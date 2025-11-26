@@ -1,4 +1,4 @@
-@SportsWorldAPI_HostAddress = http://localhost:5252
+@SportsWorldAPI_HostAddress = http://localhost:5134
 
 GET {{SportsWorldAPI_HostAddress}}/weatherforecast/
 Accept: application/json
