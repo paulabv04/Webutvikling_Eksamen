@@ -11,7 +11,7 @@ namespace SportsWorldAPI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Atheletes",
+                name: "Athletes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -24,7 +24,22 @@ namespace SportsWorldAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Atheletes", x => x.Id);
+                    table.PrimaryKey("PK_Athletes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Finances",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    MoneyLeft = table.Column<double>(type: "REAL", nullable: false),
+                    NumberOfPurchases = table.Column<int>(type: "INTEGER", nullable: false),
+                    MoneySpent = table.Column<double>(type: "REAL", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Finances", x => x.Id);
                 });
         }
 
@@ -32,7 +47,10 @@ namespace SportsWorldAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Atheletes");
+                name: "Athletes");
+
+            migrationBuilder.DropTable(
+                name: "Finances");
         }
     }
 }

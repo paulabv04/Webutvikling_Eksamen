@@ -10,8 +10,8 @@ using SportsWorldAPI.Models;
 namespace SportsWorldAPI.Migrations
 {
     [DbContext(typeof(SportsWorldContext))]
-    [Migration("20251126150528_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20251127092443_AddFinance")]
+    partial class AddFinance
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,27 @@ namespace SportsWorldAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Atheletes");
+                    b.ToTable("Athletes");
+                });
+
+            modelBuilder.Entity("SportsWorldAPI.Models.Finance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("MoneyLeft")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("MoneySpent")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("NumberOfPurchases")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Finances");
                 });
 #pragma warning restore 612, 618
         }

@@ -27,4 +27,6 @@ SportsWorldAPI/SportsWorld.db
 *.user
 *.suo
 *.swp
+*.db-shm
+*.db-wal
 Thumbs.db
