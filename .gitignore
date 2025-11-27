@@ -6,11 +6,11 @@ dist/
 .DS_Store
 
 # ===== Frontend (React/Vite) =====
-/node_modules/
-/dist/
-/.env.local
-/.env.development
-/.env.production
+cuteMonster-app/node_modules/
+cuteMonster-app/dist/
+cuteMonster-app/.env.local
+cuteMonster-app/.env.development
+cuteMonster-app/.env.production
 
 # ===== Backend (.NET) =====
 SportsWorldAPI/bin/
