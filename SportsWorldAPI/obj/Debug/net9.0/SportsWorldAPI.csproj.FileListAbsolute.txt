@@ -295,3 +295,5 @@
 /Users/siljerognstad/Documents/Webutvikling_Eksamen/SportsWorldAPI/obj/Debug/net9.0/SportsWorldAPI.pdb
 /Users/siljerognstad/Documents/Webutvikling_Eksamen/SportsWorldAPI/obj/Debug/net9.0/SportsWorldAPI.genruntimeconfig.cache
 /Users/siljerognstad/Documents/Webutvikling_Eksamen/SportsWorldAPI/obj/Debug/net9.0/ref/SportsWorldAPI.dll
+/Users/paulavega/Documents/Webutvikling_Eksamen/SportsWorldAPI/bin/Debug/net9.0/SportsWorldAPI.staticwebassets.runtime.json
+/Users/paulavega/Documents/Webutvikling_Eksamen/SportsWorldAPI/obj/Debug/net9.0/compressed/0gf59x9x94-{0}-tlvj7v27zn-tlvj7v27zn.gz

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/siljerognstad/Documents/Webutvikling_Eksamen/SportsWorldAPI/SportsWorldAPI.csproj": {}
+    "/Users/paulavega/Documents/Webutvikling_Eksamen/SportsWorldAPI/SportsWorldAPI.csproj": {}
   },
   "projects": {
-    "/Users/siljerognstad/Documents/Webutvikling_Eksamen/SportsWorldAPI/SportsWorldAPI.csproj": {
+    "/Users/paulavega/Documents/Webutvikling_Eksamen/SportsWorldAPI/SportsWorldAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/siljerognstad/Documents/Webutvikling_Eksamen/SportsWorldAPI/SportsWorldAPI.csproj",
+        "projectUniqueName": "/Users/paulavega/Documents/Webutvikling_Eksamen/SportsWorldAPI/SportsWorldAPI.csproj",
         "projectName": "SportsWorldAPI",
-        "projectPath": "/Users/siljerognstad/Documents/Webutvikling_Eksamen/SportsWorldAPI/SportsWorldAPI.csproj",
-        "packagesPath": "/Users/siljerognstad/.nuget/packages/",
-        "outputPath": "/Users/siljerognstad/Documents/Webutvikling_Eksamen/SportsWorldAPI/obj/",
+        "projectPath": "/Users/paulavega/Documents/Webutvikling_Eksamen/SportsWorldAPI/SportsWorldAPI.csproj",
+        "packagesPath": "/Users/paulavega/.nuget/packages/",
+        "outputPath": "/Users/paulavega/Documents/Webutvikling_Eksamen/SportsWorldAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/siljerognstad/.nuget/NuGet/NuGet.Config"
+          "/Users/paulavega/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -38,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -82,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

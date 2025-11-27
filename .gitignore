@@ -1,0 +1,31 @@
+# ===== Common =====
+node_modules/
+dist/
+.env
+*.log
+.DS_Store
+
+# ===== Frontend (React/Vite) =====
+cuteMonster-app/node_modules/
+cuteMonster-app/dist/
+cuteMonster-app/.env.local
+cuteMonster-app/.env.development
+cuteMonster-app/.env.production
+
+# ===== Backend (.NET) =====
+SportsWorld/bin/
+SportsWorld/obj/
+SportsWorld/.vs/
+SportsWorld/Debug/
+SportsWorld/Release/
+SportsWorld/appsettings.Development.json
+SportsWorldAPI/appsettings.json
+SportsWorldAPI/SportsWorld.db
+
+# ===== System / IDE =====
+.vscode/
+.idea/
+*.user
+*.suo
+*.swp
+Thumbs.db
