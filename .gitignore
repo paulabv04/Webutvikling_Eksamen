@@ -1,46 +1,30 @@
-# --- .NET ---
-bin/
-obj/
-*.dll
-*.pdb
-*.exe
-*.cache
-*.log
-*.db-shm
-*.db-wal
-
-# User-specific files
-*.user
-*.userosscache
-*.suo
-
-# Visual Studio Code
-.vscode/
-*.code-workspace
-
-# --- React / Vite ---
+# ===== Common =====
 node_modules/
 dist/
 .env
-.env.local
-.env.*.local
-
-# --- macOS ---
+*.log
 .DS_Store
-.AppleDouble
-.LSOverride
 
-# --- Logs ---
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+# ===== Frontend (React/Vite) =====
+/node_modules/
+/dist/
+/.env.local
+/.env.development
+/.env.production
 
-# --- SQLite ---
-*.db-shm
-*.db-wal
+# ===== Backend (.NET) =====
+SportsWorldAPI/bin/
+SportsWorldAPI/obj/
+SportsWorldAPI/Debug/
+SportsWorldAPI/Release/
+SportsWorldAPI/appsettings.Development.json
+SportsWorldAPI/appsettings.json
+SportsWorldAPI/SportsWorld.db
 
-# --- Images (if uploaded locally in backend) ---
-wwwroot/images/*
-!wwwroot/images/.gitkeep
+# ===== System / IDE =====
+.vscode/
+.idea/
+*.user
+*.suo
+*.swp
+Thumbs.db
