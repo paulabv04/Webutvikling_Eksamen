@@ -1,6 +1,8 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SportsWorldAPI.Models;
+
 namespace SportsWorldAPI.Controllers 
 {
     
@@ -8,71 +10,79 @@ namespace SportsWorldAPI.Controllers
 [Route("api/[controller]")]
 public class VenuesController : ControllerBase 
 {
-    // midlertidig database
-    private static readonly List<Venue> _venues = new List<Venue>()
-    {
-        new Venue { Id = 1, Name = "Centre Court, Wimbeldon", Capacity = 15000, Image = "/images/wimbledon.jpg"},
-        new Venue { Id = 2, Name = "Monte Carlo, Country Club", Capacity = 10000, Image = "/images/montecarlo.jpg"},
-        new Venue { Id = 3, Name = "Arthur Ashe Stadium, US Open", Capacity = 23000, Image = "/images/arthurashe.jpg"},
-        new Venue { Id = 4, Name = "Rod Laver Arena, Australian Open", Capacity = 14800, Image = "/images/rodlover.jpg"}
-    };
+    private readonly SportsWorldContext _context;
 
-    // READ - Get alle
-    // Get Api venues
-    [HttpGet]
-    public ActionResult<IEnumerable<Venue>> GetAll()
+    public VenuesController(SportsWorldContext context)
     {
-        return Ok(_venues);
+        _context = context;
     }
 
-    // READ - Get en venue
-    // GET: api/venues/3
-    [HttpGet("{id}")]
-    public ActionResult<Venue> GetById(int id)
+    // GET: api/Venues
+    [HttpGet]
+    public async Task<ActionResult<List<Venue>>> GetAll()
     {
-        var venue = _venues.FirstOrDefault(v => v.Id == id);
-        if (venue == null) return NotFound();
+        var venues = await _context.Venues.ToListAsync();
+        return Ok(venues);
+    }
+
+    // GET: api/venues/5
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Venue>> GetByID(int id)
+    {
+        var venue = await _context.Venues.FindAsync(id);
+
+        if (venue == null)
+        {
+            return NotFound();
+        }
         return Ok(venue);
     }
 
-    // Create - legg til ny venue 
-    // Post: api/venues
+    // POST api/Venues
     [HttpPost]
-    public ActionResult<Venue> Create(Venue venue)
+    public async Task<ActionResult<Venue>> Create(Venue venue)
     {
-        var nextId = _venues.Any() ? _venues.Max(v => v.Id) + 1 : 1;
-        venue.Id = nextId;
+        _context.Venues.Add(venue);
+        await _context.SaveChangesAsync();
 
-        _venues.Add(venue);
-
-        return CreatedAtAction(nameof(GetById), new { id = venue.Id }, venue);
+        return CreatedAtAction(nameof(GetByID), new { id = venue.Id }, venue);
     }
 
-    // Update - oppdatere eksisterende venue 
-    // PUT: api/venues/2
+    // PUT: api/Venues/5
     [HttpPut("{id}")]
-    public ActionResult<Venue> Update(int id, Venue updatedVenue)
+    public async Task<ActionResult<Venue>> Update(int id, Venue updatedVenue)
     {
-        var venue = _venues.FirstOrDefault(v => v.Id == id);
-        if (venue == null) return NotFound();
+        var venue = await _context.Venues.FindAsync(id);
+
+        if (venue == null)
+        {
+            return NotFound();
+        }
 
         venue.Name = updatedVenue.Name;
         venue.Capacity = updatedVenue.Capacity;
         venue.Image = updatedVenue.Image;
 
+        await _context.SaveChangesAsync();
+
         return Ok(venue);
     }
 
-    // DELETE - slette venue
-    // DELETE: api/venues/2
+    // DELETE: api/Venues/5
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        var venue = _venues.FirstOrDefault(v => v.Id == id);
-        if (venue == null) return NotFound();
+        var venue = await _context.Venues.FindAsync(id);
 
-        _venues.Remove(venue);
+        if(venue == null)
+        {
+            return NotFound();
+        }
+
+        _context.Venues.Remove(venue);
+        await _context.SaveChangesAsync();
+
         return NoContent();
     }
-    }
+}
 }
