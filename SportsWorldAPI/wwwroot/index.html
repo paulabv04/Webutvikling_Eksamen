@@ -3,9 +3,249 @@
 <html>
 <head>
     <title>SportsWorld API</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 30px;
+            background-color: #0b3d2e;
+            color: #f5f2e8;
+            font-family: "Inter", sans-serif;
+            text-align: center;
+            
+        }
+
+        h1, h2 {
+            font-family: 'Playfair Display', sans-serif;
+        }
+
+        h1 {
+            color: #e3d5b8;
+            margin-bottom: 10px;
+            font-size: 3rem;
+        }
+
+        p {
+            max-width: 700px;
+            margin: auto;
+            color: #e3d5b8;
+        }
+
+    
+
+        .section-card {
+            background: #123825;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px auto;
+            width: 90%;
+            max-width: 800px;
+            border: 1px solid #d3c6a2;
+        }
+
+
+        .btn {
+            background-color: #d3c6a2;
+            color: #0b2819;
+            padding: 10px 18px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #e8ddc0;
+        }
+
+        .result-box {
+            text-align: left;
+            margin-top: 20px;
+            padding: 15px;
+            background: #0d2f1f;
+            border-radius: 8px;
+            border: 1px solid #c9bb9c;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .small-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 8px;
+            border: 1px solid #d3c6a2;
+}
+
+
+    </style>
+
 </head>
 <body>
-    <h1>SportsWorld API</h1>
-    <p>Swagger UI: <a href="/swagger">Open Swagger</a></p>
+
+    <header>
+        <h1>SportsWorld API</h1>
+        <p class="subtitle">Tennis backend-API made with ASP.NET and Enitity Framework Core </p>
+    </header>
+
+    <!--Athletes-->
+    <section class="section-card">
+        <h2>Athletes</h2>
+        <p>Get all registered tennisplayers.</p>
+        <button class="btn" onclick="fetchAthletes()">Show Athletes</button>
+
+        <div id="athlete-output" class="result-box"></div>
+
+    </section>
+
+
+    <!--Venues-->
+    <section class="section-card">
+        <h2>Venues</h2>
+        <p>Get all available venues.</p>
+        <button class="btn" onclick="fetchVenues()">Show Venues</button>
+
+        <div id="venue-output" class="result-box"></div>
+
+    </section>
+
+
+    <!--Finances-->
+    <section class="section-card">
+        <h2>Finance</h2>
+        <p>Get overview of finances to buy tennisplayers.</p>
+        <button class="btn" onclick="fetchFinance()">Show Finance</button>
+
+        <div id="finance-output" class="result-box"></div>
+
+    </section>
+    
+
+    <footer>
+        &copy; 2025 SportsWorld - Webutvikling Eksamen Host 2025
+    </footer>
+
+    <script>
+
+        const BASE_URL = "http://localhost:5134";
+
+
+        //Athletes
+        function showAthletes(athletes){
+            const output = document.getElementById("athlete-output");
+
+            if (!athletes || athletes.length === 0) {
+                output.innerHTML = `<p>No athletes found</p>`;
+                return;
+            }
+
+            let html = "";
+            athletes.forEach(athlete => {
+                html += `
+                    <article class="item-card">
+                        <h3>${athlete.name}</h3>
+                        <p><strong>Gender:</strong> ${athlete.gender}</p>
+                        <p><strong>Price:</strong> $${athlete.price}</p>
+                        <p><strong>Purchased:</strong> ${athlete.purchaseStatus ? "Yes":"No"}</p>
+                        <img src="${athlete.image}" class="small-img"/>
+                    </article>
+                `;
+            });
+
+            output.innerHTML = html; 
+        }
+
+
+        async function fetchAthletes() {
+            try {
+                const response = await axios.get(`${BASE_URL}/api/athlete`);
+                showAthletes(response.data);
+            } catch (error) {
+                document.getElementById("athlete-output").innerHTML = 
+                    `<p>Error loading athletes</p>`;
+            }
+        }
+
+
+
+        //Venues
+        function showVenues(venues){
+            const output = document.getElementById("venue-output");
+
+            if (!venues || venues.length === 0) {
+                output.innerHTML = `<p>No venues found</p>`;
+                return;
+            }
+
+            let html = "";
+            venues.forEach(venue => {
+                html += `
+                    <article class="item-card">
+                        <h3>${venue.name}</h3>
+                        <p><strong>Capacity:</strong> ${venue.capacity}</p>
+                        <img src="${venue.image}" class="small-img"/>
+                    </article>
+                `;
+            });
+
+            output.innerHTML = html; 
+        }
+
+
+        async function fetchVenues() {
+            try {
+                const response = await axios.get(`${BASE_URL}/api/venues`);
+                showVenues(response.data);
+            } catch (error) {
+                document.getElementById("venue-output").innerHTML = 
+                    `<p>Error loading venues</p>`;
+            }
+        }
+
+
+
+        //Finance
+        function showFinance(finance){
+            const output = document.getElementById("finance-output");
+
+            if (!finance) {
+                output.innerHTML = `<p>No finance data found</p>`;
+                return;
+            }
+
+            output.innerHTML= `
+                    <article class="item-card">
+                        <p><strong>Money left:</strong> ${finance.moneyLeft}</p>
+                        <p><strong>Money spent:</strong> ${finance.moneySpent}</p>
+                        <p><strong>Purchases:</strong> ${finance.numberOfPurchases}</p>
+                    </article>
+                `;
+            }
+
+
+        async function fetchFinance() {
+            try {
+                const response = await axios.get(`${BASE_URL}/api/finance`);
+                showFinance(response.data);
+            } catch (error) {
+                document.getElementById("finance-output").innerHTML = 
+                    `<p>Error loading venues</p>`;
+            }
+        }
+
+
+
+    </script>
+
+
 </body>
 </html>
