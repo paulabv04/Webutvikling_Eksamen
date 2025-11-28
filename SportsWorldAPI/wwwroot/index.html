@@ -77,6 +77,27 @@
             overflow-y: auto;
         }
 
+        .endpoint-list {
+            background: #0d2f1f;
+            padding: 3px 6px;
+            border-radius: 5px;
+            color: #e8ddc0;
+            border: 1px solid #d3c6a2;
+            margin-top: 20px;
+            margin-bottom: 20px;
+
+        }
+
+        .endpoint-list code {
+            background: #0d2f1f;
+            padding: 3px 6px;
+            border-radius: 5px;
+            color: #e8ddc0;
+            border: 1px solid #d3c6a2;
+            margin: 2px;
+
+        }
+
         .small-img {
             width: 120px;
             height: 120px;
@@ -84,7 +105,12 @@
             border-radius: 8px;
             margin-top: 8px;
             border: 1px solid #d3c6a2;
-}
+        }
+        
+        .endpoint-list p {
+            margin: 12px 0;
+            line-height: 1.7;
+        }
 
 
     </style>
@@ -101,6 +127,17 @@
     <section class="section-card">
         <h2>Athletes</h2>
         <p>Get all registered tennisplayers.</p>
+
+        <div class="endpoint-list">
+            <p><strong>Available Endpoints:</strong></p>
+            <p><code>GET /api/athlete</code> - Get all athletes</p>
+            <p><code>GET /api/athlete/{id}</code> - Get athlete by id</p>
+            <p><code>POST /api/athlete</code> - Create athlete</p>
+            <p><code>PUT /api/athlete/{id}</code> - Update athlete</p>
+            <p><code>DELETE /api/athlete/{id}</code> - Remove athlete</p>
+        </div>
+
+
         <button class="btn" onclick="fetchAthletes()">Show Athletes</button>
 
         <div id="athlete-output" class="result-box"></div>
@@ -112,6 +149,16 @@
     <section class="section-card">
         <h2>Venues</h2>
         <p>Get all available venues.</p>
+
+        <div class="endpoint-list">
+            <p><strong>Available Endpoints:</strong></p>
+            <p><code>GET /api/venues</code> - Get all venues</p>
+            <p><code>GET /api/venues/{id}</code> - Get venue by id</p>
+            <p><code>POST /api/venues</code> - Create venue</p>
+            <p><code>PUT /api/venues/{id}</code> - Update venue</p>
+            <p><code>DELETE /api/venue/{id}</code> - Remove venue</p>
+        </div>
+
         <button class="btn" onclick="fetchVenues()">Show Venues</button>
 
         <div id="venue-output" class="result-box"></div>
@@ -123,6 +170,14 @@
     <section class="section-card">
         <h2>Finance</h2>
         <p>Get overview of finances to buy tennisplayers.</p>
+
+        <div class="endpoint-list">
+            <p><strong>Available Endpoints:</strong></p>
+            <p><code>GET /api/finance</code> - Get current finances</p>
+            <p><code>POST /api/finance</code> - Add loan</p>
+            <p><code>POST /api/finance/{athleteId}</code> - Register purchase</p>
+        </div>
+
         <button class="btn" onclick="fetchFinance()">Show Finance</button>
 
         <div id="finance-output" class="result-box"></div>
