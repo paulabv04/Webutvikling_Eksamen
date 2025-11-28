@@ -19,7 +19,9 @@ SportsWorldAPI/Debug/
 SportsWorldAPI/Release/
 SportsWorldAPI/appsettings.Development.json
 SportsWorldAPI/appsettings.json
-SportsWorldAPI/SportsWorld.db
+*.db-shm
+*.db-wal
+
 
 # ===== System / IDE =====
 .vscode/
