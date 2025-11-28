@@ -1,4 +1,4 @@
-import { IAthlete } from "../interface/IAthlete"
+
 import { IMAGE_URL } from "../global"
 
 function AthleteCard({athlete, onPurchase}) {
