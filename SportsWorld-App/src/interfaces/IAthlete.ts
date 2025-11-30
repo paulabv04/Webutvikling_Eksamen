@@ -1,4 +1,3 @@
-
 export interface IAthlete {
     id: number;
     name: string;

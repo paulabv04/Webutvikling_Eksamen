@@ -1,11 +1,13 @@
-import {BASE_URL} from "../global";
-import type { IAthlete } from "../interface/IAthlete";
+import axios from "axios";
+import type { IAthlete } from "../interfaces/IAthlete";
 
-export async function getAthletes(): Promise<IAthlete[]> {
-    const response = await fetch (`${BASE_URL}/athlete`);
+const API_URL = "http://localhost:5134/api/Athlete";
 
-    if(!response.ok){
-        throw new Error("Failed to fetvh athletes");
-    }
-    return response.json()
-}
+export const getAthletes = async (): Promise<IAthlete[]> => {
+    const response = await axios.get(API_URL);
+    return response.data;
+};
+
+export const deleteAthlete = async (id: number): Promise<void> => {
+    await axios.delete(`${API_URL}/${id}`);
+};
