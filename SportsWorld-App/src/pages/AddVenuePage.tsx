@@ -1,32 +1,16 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import type { FormEvent } from "react";
-import venueService from "../services/VenueService";
-import type { IVenue } from "../interfaces/IVenue";
-
+import { useVenue } from "../contexts/VenueContext";
 
 export default function AddVenuePage() {
+    const { venues, addVenue } = useVenue(); // henter fra context
+
     // input felt state
     const [name, setName] = useState("");
     const [capacity, setCapacity] = useState<number | "">("");
     const [image, setImage] = useState("");
 
-    // liste over venues
-    const [venues, setVenues] = useState<IVenue[]>([]);
-
-    // henter venues fra backend
-    const fetchVenues = async () => {
-        try {
-            const data = await venueService.getAll();
-            setVenues(data);
-        } catch (error) {
-            console.error("Error fetching venues:", error);
-        }
-    };
-
-    useEffect(() => {
-        fetchVenues();
-    }, []);
 
     // submit av skjema
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -38,8 +22,8 @@ export default function AddVenuePage() {
         }
 
         try {
-            await venueService.create({
-                name,
+            await addVenue({
+                name, 
                 capacity: Number(capacity),
                 image,
             });
@@ -48,9 +32,6 @@ export default function AddVenuePage() {
             setName("");
             setCapacity("");
             setImage("");
-
-            // oppdater listen under
-            await fetchVenues();
         } catch (error) {
             console.error("Error adding venue:", error);
             alert("Failed to add venue.")
@@ -58,6 +39,7 @@ export default function AddVenuePage() {
     };
 
     return (
+
         <div className="min-h-screen bg-[#f6f4ef] flex justify-center py-10 px-4">
             <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg border border-[#b4a27a] p-8">
             <h2 className="text-3xl font-bold mb-2 text-[#0f3d2e]"> Add new Venue </h2>
