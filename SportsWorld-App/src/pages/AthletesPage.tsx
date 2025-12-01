@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import type { IAthlete } from "../interfaces/IAthlete";
 import { getAthletes,deleteAthlete } from "../services/AthleteService";
+import AthleteCard from "../components/AthleteCard";
 
 const AthletesPage = () => {
    const [athletes, setAthletes] = useState<IAthlete[]>([]);
    const [search, setSearch] = useState("");
+
 
    useEffect(() => {
     loadData();
@@ -12,11 +14,10 @@ const AthletesPage = () => {
 
    const loadData = async () => {
     const data = await getAthletes();
-    console.log("ATHLETES FROM API:", data);
     setAthletes(data);
    };
 
-   const handleData = async (id:number) => {
+   const handleDelete= async (id:number) => {
     if(!confirm("Delete athlete?")) return;
     await deleteAthlete(id);
     loadData();
@@ -40,19 +41,11 @@ const AthletesPage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {filteredAthletes.map(a => (
-                <div key={a.id} className="border p-4 rounded shadow">
-                    <img src={`/images/${a.image}`} alt={a.name} className="h-40 w-full object-cover mb-2" />
-                    <h2 className="text-lg font-semibild">{a.name}</h2>
-                    <p>Gender: {a.gender}</p>
-                    <p>Price: ${a.price}</p>
-                    <p>STATUS:{a.purchaseStatus ? "Purchased" : "Not purchased"}</p>
-
-                    <button 
-                    onClick={() => handleData(a.id)}
-                    className="mt-2 bg-red-600 text-white px-3 py-1 rounded"
-                    >Delete
-                    </button>
-                </div>
+                <AthleteCard
+                key={a.id}
+                athlete={a}
+                onDelete={handleDelete}
+                />
             ))}
         </div>
     </div>

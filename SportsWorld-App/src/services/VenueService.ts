@@ -1,10 +1,9 @@
-
-
+import { BASE_URL } from "../global";
 import type { IVenue } from "../interfaces/IVenue";
 import axios from "axios";
 
 
-const API_URL = "http://localhost:5134/api/Venues";
+const API_URL = `${BASE_URL}/Venues`;
 
 const venueService = {
     // Get: hent alle venues
