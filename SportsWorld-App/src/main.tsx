@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { FinanceProvider } from './contexts/FinanceContext';
-import { BrowserRouter } from 'react-router-dom';
+import { VenueProvider } from './contexts/VenueContext';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
     <FinanceProvider>
-    <App />
+      <VenueProvider>
+        <App/>
+      </VenueProvider>
     </FinanceProvider>
-    </BrowserRouter>
   </React.StrictMode>
-)
- 
+);

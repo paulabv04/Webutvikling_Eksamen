@@ -1,3 +1,20 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  background-color: #f6f4ef;
+  color: #0f3d2e;
+  font-family: system-ui, -apple-system, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif
+}
+
+a {
+  text-decoration: none;
+}
+
+  /*
 @import "tailwindcss";
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -67,3 +84,5 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+*/
+
