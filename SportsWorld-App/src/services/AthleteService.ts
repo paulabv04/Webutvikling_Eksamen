@@ -1,7 +1,8 @@
 import axios from "axios";
+import { BASE_URL } from "../global";
 import type { IAthlete } from "../interfaces/IAthlete";
 
-const API_URL = "http://localhost:5134/api/Athlete";
+const API_URL = `${BASE_URL}/Athlete`;
 
 export const getAthletes = async (): Promise<IAthlete[]> => {
     const response = await axios.get(API_URL);

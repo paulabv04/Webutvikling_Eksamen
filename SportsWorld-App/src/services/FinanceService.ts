@@ -9,8 +9,10 @@ export async function getFinance(): Promise<IFinance> {
 }
 
 export async function loan(amount:number): Promise<IFinance> {
-    const response = await fetch(`${BASE_URL}/Finance/loan/${amount}`, {
-        method: "PUT",
+    const response = await fetch(`${BASE_URL}/Finance/loan`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({amount})
     });
     if (!response.ok) throw new Error("Loan failed");
     return response.json();
@@ -18,7 +20,7 @@ export async function loan(amount:number): Promise<IFinance> {
 
 export async function purchaseAthlete(athleteId: number): Promise<IFinance> {
     const response = await fetch(`${BASE_URL}/Finance/purchase/${athleteId}`,{
-        method: "PUT",
+        method: "POST",
     });
     if (!response.ok) throw new Error("Purchase failed");
     return response.json();
