@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {useParams, useNavigate} from "react-router-dom";
 import type { IAthlete } from "../interfaces/IAthlete";
 import { getAthleteById, updateAthlete } from "../services/AthleteService";
+import { uploadImage } from "../services/ImageService";
 
 const EditAthletePage = () => {
     const {id} = useParams();
@@ -89,6 +90,23 @@ const EditAthletePage = () => {
                           <option value="false">Not purchased</option>
                             <option value="true">Purchased</option>
                         </select>
+                    </div>
+
+                    <div>
+                        <label>Change Image</label>
+                        <input
+                        type="file"
+                        accept="image/*"
+                        onChange={async (e) => {
+                            if (!e.target.files || e.target.files?.length === 0) return;
+
+                            const file = e.target.files[0];
+                            const uploadedFileName = await uploadImage(file);
+
+                            setAthlete({ ...athlete, image: uploadedFileName});
+                        }}
+                        className="border p-2 w-full"
+                        />
                     </div>
 
                     <button

@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import type { IAthlete } from "../interfaces/IAthlete";
 import { getAthletes,deleteAthlete } from "../services/AthleteService";
 import AthleteCard from "../components/AthleteCard";
+import { useNavigate } from "react-router-dom";
 
 const AthletesPage = () => {
    const [athletes, setAthletes] = useState<IAthlete[]>([]);
    const [search, setSearch] = useState("");
+   const navigate = useNavigate();
 
 
    useEffect(() => {
@@ -29,7 +31,16 @@ const AthletesPage = () => {
 
    return(
     <div className="p-6">
-        <h1 className="text-2xl font-bold mb-4">Athletes</h1>
+        <div className="flex justify-between items-center mb-4">
+            <h1 className="text-2xl font-bold mb-4">Athletes</h1>
+
+            <button
+            onClick={() => navigate("/athletes/register")}
+            className="bg-green-600 text-white px-4 py-2 rounded"
+            >
+                + Add Athlete
+            </button>
+        </div>
 
         <input 
         type="text"

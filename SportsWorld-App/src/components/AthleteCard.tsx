@@ -1,5 +1,6 @@
 import type { IAthlete } from "../interfaces/IAthlete";
 import { useNavigate } from "react-router-dom";
+import { IMAGE_BASE_PATH } from "../global";
 
 interface AthleteCardProps {
     athlete: IAthlete;
@@ -12,7 +13,7 @@ const AthleteCard = ({athlete, onDelete}: AthleteCardProps) => {
     return (
         <div className="border p-4 rounded shadow ">
             <img 
-            src={`/images/${athlete.image}`}
+            src={`${IMAGE_BASE_PATH}${athlete.image}`}
             alt={athlete.name}
             className="h-40 w-full object-cover mb-3 rounded"
             />
