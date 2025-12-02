@@ -75,7 +75,7 @@ export default function Navbar() {
             to="/athletes/register"
             className="block px-3 py-1 text-xs text-[#1d4e39] hover:bg-[#f6f4ef]"
             >
-                Add athlete
+                Register athlete
             </NavLink>
             </div>
         </div>

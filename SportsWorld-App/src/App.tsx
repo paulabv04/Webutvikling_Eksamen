@@ -1,12 +1,11 @@
 
 import {  Routes, Route, } from "react-router-dom";
 import Navbar from "./components/Navbar";
-
+import FinancePage from "./pages/FinancePage";
 import AthletesPage from "./pages/AthletesPage";
 import EditAthletePage from "./pages/EditAthletePage";
 import AddVenuePage from "./pages/AddVenuePage";
 import VenueListPage from "./pages/VenueListPage";
-import FinancePage from "./pages/FinancePage";
 import Homepage from "./pages/HomePage";
 import RegisterAthletePage from "./pages/RegisterAthletePage";
 
