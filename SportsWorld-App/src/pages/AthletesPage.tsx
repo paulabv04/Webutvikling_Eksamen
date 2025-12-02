@@ -7,12 +7,22 @@ import ConfirmModal from "../components/ConfirmModal";
 import { deleteAthlete } from "../services/AthleteService";
 
 const AthletesPage = () => {
+    //Henter liste + oppdateringsfunskjoner fra context
    const {athletes, loadAthletes} = useAthlete();
+
+   //Lokalt søkefelt
    const [search, setSearch] = useState("");
+
+   //Navigasjon til andre sider
    const navigate = useNavigate();
+
+   //Modal-state for sletting
    const [showConfirm, setShowConfirm] = useState(false);
+
+   //starter sletting og åpner modal
    const [pendingDeleteId, setPendingDeleteId] = useState<number | null>(null);
 
+   //Sletter athlete og oppdaterer liste
    const startDelete = (id: number) => {
     setPendingDeleteId(id);
     setShowConfirm(true);
@@ -28,6 +38,7 @@ const AthletesPage = () => {
     setPendingDeleteId(null);
    }
 
+   //Fjerner athletes som ikke matcher søket 
    const filteredAthletes = athletes.filter(a => 
     a.name.toLowerCase().includes(search.toLowerCase())
    );
@@ -47,7 +58,7 @@ const AthletesPage = () => {
         placeholder="Search..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full mb-8 max-w-sm p-3 rounded-xl border border-tennisGreen/20 bg-white shadow-sm focus:border-tennisGreen focus:ring-2 focus:ring-tennisGreen/60"
+        className="w-full mb-8 max-w-sm p-3 rounded-xl border border-tennisGreen/50 bg-white shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2 focus:ring-tennisGreen"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
