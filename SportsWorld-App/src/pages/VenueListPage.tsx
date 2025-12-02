@@ -43,8 +43,8 @@ export default function VenueListPage() {
             <div className="w-full max-w-5xl bg-white rounded-2xl shadow-lg border border-[#b4a27a] p-8">
                 {/* tittel */}
                 <div className="mb-6">
-                    <h1 className="text-3xl font-bold text-[#0f3d2e]">All Vnues</h1>
-                    <p className="text-sm text-[#1d4e39]">Overview of all registreded tenneis venues for SportsWorld</p>
+                    <h1 className="text-3xl font-bold text-[#0f3d2e]">All Venues</h1>
+                    <p className="text-sm text-[#1d4e39]">Overview of all registered tennis venues for SportsWorld</p>
                     </div>
 
                     {/* søkefelt*/ }

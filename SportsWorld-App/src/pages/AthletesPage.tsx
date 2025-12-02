@@ -67,7 +67,7 @@ const AthletesPage = () => {
         onCancel={() => setShowConfirm(false)}
         />
     </div>
-   );
+);
 };
 
 export default AthletesPage;
