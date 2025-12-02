@@ -5,7 +5,6 @@ import './index.css';
 import App from './App';
 import { FinanceProvider } from './contexts/FinanceContext';
 import { VenueProvider } from './contexts/VenueContext';
-import { BrowserRouter } from 'react-router-dom';
 import { AthleteProvider } from './contexts/AthleteContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
