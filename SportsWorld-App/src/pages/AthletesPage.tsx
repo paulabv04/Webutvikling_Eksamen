@@ -1,26 +1,17 @@
-import { useEffect, useState } from "react";
-import type { IAthlete } from "../interfaces/IAthlete";
-import { getAthletes,deleteAthlete } from "../services/AthleteService";
-import AthleteCard from "../components/AthleteCard";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAthlete } from "../contexts/AthleteContext";
+import AthleteCard from "../components/AthleteCard";
 import Button from "../components/Button";
 import ConfirmModal from "../components/ConfirmModal";
+import { deleteAthlete } from "../services/AthleteService";
 
 const AthletesPage = () => {
-   const [athletes, setAthletes] = useState<IAthlete[]>([]);
+   const {athletes, loadAthletes} = useAthlete();
    const [search, setSearch] = useState("");
    const navigate = useNavigate();
    const [showConfirm, setShowConfirm] = useState(false);
    const [pendingDeleteId, setPendingDeleteId] = useState<number | null>(null);
-
-   useEffect(() => {
-    loadData();
-   }, []);
-
-   const loadData = async () => {
-    const data = await getAthletes();
-    setAthletes(data);
-   };
 
    const startDelete = (id: number) => {
     setPendingDeleteId(id);
@@ -31,7 +22,7 @@ const AthletesPage = () => {
     if(pendingDeleteId === null) return;
 
     await deleteAthlete(pendingDeleteId);
-    loadData();
+    await loadAthletes();
 
     setShowConfirm(false);
     setPendingDeleteId(null);
