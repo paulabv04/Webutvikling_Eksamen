@@ -17,26 +17,44 @@ export default function Navbar() {
             </div>
 
             { /* Links */ }
-            <div className="flex gap-4 text-sm">
+            <div className="flex items-center gap-4 text-sm">
+            {/* Home */ }
             <NavLink
             to="/"
             end
             className={({ isActive }) =>
-            `px-3 py-1 rounded-full ${
+            `inline-flex items-center justify-center px-3 py-1 rounded-full ${
                 isActive
                     ?  "bg-[#0f3d2e] text-[#f6f4ef]"
                     : "text-[#1d4e39] hover:bg-[#e7ddc3]"
                 }`
             }
-            > Home 
+            > 
+                Home 
             </NavLink>
+
+            { /* Finance */ }
+            <NavLink 
+            to="/finance"
+            className={({ isActive }) =>
+                `inline-flex items-center justify-center px-3 py-1 rounded-full ${
+                    isActive
+                    ?  "bg-[#0f3d2e] text-[#f6f4ef]"
+                    : "text-[#1d4e39] hover:bg-[#e7ddc3]"
+                }`
+            }
+        >
+            Finance
+        </NavLink>
+        
+
 
             { /* Athletes dropdown */ }
             <div className="relative group">
             <NavLink
             to="/athletes"
             className={({ isActive }) =>
-            `px-3 py-1 rounded-full ${
+            `inline-flex items-center justify-center px-3 py-1 rounded-full ${
             isActive
             ?  "bg-[#0f3d2e] text-[#f6f4ef]"
             : "text-[#1d4e39] hover:bg-[#e7ddc3]"
@@ -68,7 +86,7 @@ export default function Navbar() {
         <NavLink
         to="/venues"
         className={({ isActive }) =>
-        `px-3 py-1 rounded-full ${
+        `inline-flex items-center justify-center px-3 py-1 rounded-full ${
             isActive
             ?  "bg-[#0f3d2e] text-[#f6f4ef]"
             : "text-[#1d4e39] hover:bg-[#e7ddc3]"
