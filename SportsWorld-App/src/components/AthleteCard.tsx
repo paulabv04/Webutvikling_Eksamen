@@ -1,6 +1,7 @@
 import type { IAthlete } from "../interfaces/IAthlete";
 import { useNavigate } from "react-router-dom";
 import { IMAGE_BASE_PATH } from "../global";
+import Button from "../components/Button";
 
 interface AthleteCardProps {
     athlete: IAthlete;
@@ -9,34 +10,28 @@ interface AthleteCardProps {
 
 const AthleteCard = ({athlete, onDelete}: AthleteCardProps) => {
     const navigate = useNavigate();
-
+   
     return (
-        <div className="border p-4 rounded shadow ">
+        <div className="border rounded-xl p-5 shadow-sm hover:shadow-lg transition p-5 border border-tennisSand/50">
             <img 
-            src={`${IMAGE_BASE_PATH}${athlete.image}`}
+            src={`${IMAGE_BASE_PATH}${athlete.image}?t=${Date.now()}`}
             alt={athlete.name}
-            className="h-40 w-full object-cover mb-3 rounded"
+            className="w-full h-56 object-contain bg-tennisSand rounded-xl"
             />
 
-            <h2 className="text-lg font-semibild">{athlete.name}</h2>
-            <p>Gender: {athlete.gender}</p>
-            <p>Price: ${athlete.price}</p>
-            <p>STATUS:{athlete.purchaseStatus ? "Purchased" : "Not purchased"}</p>
+            <h2 className="text-lg font-semibild mt-2 text-tennisGreen">{athlete.name}</h2>
+            <p className="text-tennisDark/70 text-sm">Gender: {athlete.gender}</p>
+            <p className="text-tennisDark/70 text-sm">Price: ${athlete.price}</p>
+            <p className="text-tennisDark/70 text-sm">STATUS: {athlete.purchaseStatus ? "Purchased" : "Not purchased"}</p>
 
             <div className="flex gap-2 mt-4">
-                <button 
-                onClick={() => navigate(`/athletes/edit/${athlete.id}`)}
-                className="bg-blue-600 text-white px-3 py-1 rounded"
-                >
+                <Button variant="primary" onClick={() => navigate(`/athletes/edit/${athlete.id}`)}>
                     Edit
-                </button>
+                </Button>
 
-                <button 
-                    onClick={() => onDelete(athlete.id)}
-                    className="mt-2 bg-red-600 text-white px-3 py-1 rounded"
-                >
+                <Button variant="danger" onClick={() => onDelete(athlete.id)}>
                     Delete
-                </button>
+                </Button>
             </div>
         </div>
     );

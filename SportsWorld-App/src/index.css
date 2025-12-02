@@ -14,6 +14,10 @@ a {
   text-decoration: none;
 }
 
+html{
+  font-family: 'inter', sans-serif;
+}
+
   /*
 @import "tailwindcss";
 :root {

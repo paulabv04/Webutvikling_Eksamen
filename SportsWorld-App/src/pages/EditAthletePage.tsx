@@ -3,6 +3,7 @@ import {useParams, useNavigate} from "react-router-dom";
 import type { IAthlete } from "../interfaces/IAthlete";
 import { getAthleteById, updateAthlete } from "../services/AthleteService";
 import { uploadImage } from "../services/ImageService";
+import Button from "../components/Button";
 
 const EditAthletePage = () => {
     const {id} = useParams();
@@ -11,6 +12,7 @@ const EditAthletePage = () => {
     const [athlete, setAthlete] = useState<IAthlete | null>(null);
 
         useEffect(() => {
+            console.log("ID from URL:", id);
             loadData();
         }, []);
 
@@ -108,14 +110,11 @@ const EditAthletePage = () => {
                         className="border p-2 w-full"
                         />
                     </div>
-
-                    <button
-                    type="submit"
-                    className="bg-green-600 text-white px-4 py-2 rounded"
-                    >
-                        Save Changes
-                    </button>
-                    </form>
+                    
+                    <Button variant="primary" type="submit">
+                        Save changes
+                    </Button>
+                </form>
             </div>
         );
 };

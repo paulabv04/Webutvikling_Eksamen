@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import type { IAthlete } from "../interfaces/IAthlete";
 import { createAthlete } from "../services/AthleteService";
 import { uploadImage } from "../services/AthleteService";
+import Button from "../components/Button";
 
 const RegisterAthletePage = () => {
     const navigate = useNavigate();
@@ -82,14 +83,10 @@ const RegisterAthletePage = () => {
                         className="border p-2 w-full"
                         />
                     </div>
-
-
-                    <button
-                    type="submit"
-                    className="bg-green-600 text-white px-4 py-2 rounded"
-                    >
+                    
+                    <Button variant="primary" type="submit">
                         Register Athlete
-                    </button>
+                    </Button>
                 </form>
         </div>
     );
