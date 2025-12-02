@@ -5,7 +5,7 @@ import { loan, purchaseAthlete } from "../services/FinanceService";
 import { getAthletes } from "../services/AthleteService";
 import type { IAthlete } from "../interfaces/IAthlete";
 import FinanceCard from "../components/FinanceCard";
-//import PurchaseList from "../components/PurchaseList";
+import PurchaseList from "../components/PurchaseList";
 
 export default function FinancePage() {
     const { finance, updateFinance } = useFinance();
@@ -54,7 +54,7 @@ export default function FinancePage() {
                 </button>
             </section>
             
-            {/*<PurchaseList athletes={athletes} onPurchase={handlePurchase}/>*/}
+            <PurchaseList athletes={athletes} onPurchase={handlePurchase}/>
 
         </div>
     );

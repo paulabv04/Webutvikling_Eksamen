@@ -1,4 +1,4 @@
-/*
+
 import type { IAthlete } from "../interfaces/IAthlete";
 import AthleteCard from "./AthleteCard";
 
@@ -22,4 +22,3 @@ export default function PurchaseList({ athletes, onPurchase}: Props){
         </div>
     );
 }
-*/

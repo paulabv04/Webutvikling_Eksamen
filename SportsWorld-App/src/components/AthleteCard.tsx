@@ -5,10 +5,11 @@ import Button from "../components/Button";
 
 interface AthleteCardProps {
     athlete: IAthlete;
-    onDelete: (id: number) => void;
+    onDelete?: (id: number) => void;
+    onPurchase?: (id: number) => void; 
 }
 
-const AthleteCard = ({athlete, onDelete}: AthleteCardProps) => {
+const AthleteCard = ({athlete, onDelete, onPurchase}: AthleteCardProps) => {
     const navigate = useNavigate();
    
     return (
@@ -25,13 +26,23 @@ const AthleteCard = ({athlete, onDelete}: AthleteCardProps) => {
             <p className="text-tennisDark/70 text-sm">STATUS: {athlete.purchaseStatus ? "Purchased" : "Not purchased"}</p>
 
             <div className="flex gap-2 mt-4">
+
+            {!athlete.purchaseStatus && onPurchase && (
+                <Button variant="primary" onClick={() => onPurchase(athlete.id)}>
+                    Purchase
+                </Button>
+            )}
+
                 <Button variant="primary" onClick={() => navigate(`/athletes/edit/${athlete.id}`)}>
                     Edit
                 </Button>
 
+
+            {onDelete && (
                 <Button variant="danger" onClick={() => onDelete(athlete.id)}>
                     Delete
                 </Button>
+                )}
             </div>
         </div>
     );
