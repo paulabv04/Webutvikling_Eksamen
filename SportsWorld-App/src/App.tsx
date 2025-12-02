@@ -12,7 +12,7 @@ import RegisterAthletePage from "./pages/RegisterAthletePage";
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#f6f4ef] text-[#0f3d2e]">
+    <div className="min-h-screen bg-tennisSand text-[#0f3d2e]">
       <Navbar />
 
       <main className="max-w-6xl mx-auto px-4 py-8">

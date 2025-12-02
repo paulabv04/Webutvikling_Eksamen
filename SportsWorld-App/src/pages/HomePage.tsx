@@ -2,17 +2,19 @@
 import { useVenue } from "../contexts/VenueContext";
 import VenueCard from "../components/VenueCard";
 import { useAthlete } from "../contexts/AthleteContext";
+import AthleteCard from "../components/AthleteCard";
 
 export default function Homepage(){
 
     const { venues } = useVenue();
+    const {athletes} = useAthlete();
     return (
 
-        <div className="w-full">
+        <div className="w-full bg-tennisSand">
 
             <section className="relative w-full h-[80vh] overflow-hidden">
                 <video 
-                    className="absolute inset-0 w-full object-cover"
+                    className="absolute inset-0 w-[160%] left-1/2 -translate-x-1/2 h-full object-cover object-[center_30%]"
                     autoPlay
                     muted
                     loop
@@ -20,19 +22,43 @@ export default function Homepage(){
                     <source src="/video/forsideVideo.mp4" type="video/mp4"/>
                     
                 </video>
+                
+                <div className="absolute inset-0 bg-gradient-to-b from-black/25 to-black/60"></div>
 
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
-                    <h1 className="text-5xl md:text-7xl font-light tracking-wide">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                    <h1 className="text-6xl md:text-8xl font-serif font-light tracking-wide text-white drop-shadow-xl">
                         SportsWorld Tennis
                     </h1>
                 </div>
 
             </section>
 
+            <section className="mt-16">
+                <h2 className="flex gap-4 px-2 pb-4 snap-x snap-mandatory">
+                    Explore Athletes
+                </h2>
+
+                <div className="overflow-x-auto">
+                    <div className="flex gap-4 px-2 pb-4 snap-x snap-mandatory">
+
+                        {athletes.map((athlete)=>(
+                            <div
+                                key={athlete.id}
+                                className="min-w-[250px] snap-center flex-shrink-0"
+                            >
+                                <AthleteCard athlete={athlete}/>
+                            </div>
+                        ))}
+
+                    </div>
+
+                </div>
+            </section>
+
 
             <section className="mt-16">
                 <h2 className="flex gap-4 px-2 pb-4 snap-x snap-mandatory">
-                    Explore our Venues
+                    Explore Venues
                 </h2>
 
                 <div className="overflow-x-auto">
