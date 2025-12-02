@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import { FinanceProvider } from './contexts/FinanceContext';
 import { VenueProvider } from './contexts/VenueContext';
-import { BrowserRouter } from 'react-router-dom';
 import { AthleteProvider } from './contexts/AthleteContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

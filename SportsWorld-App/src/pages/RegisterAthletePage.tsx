@@ -4,6 +4,7 @@ import type { IAthlete } from "../interfaces/IAthlete";
 import { createAthlete } from "../services/AthleteService";
 import { uploadImage } from "../services/AthleteService";
 import Button from "../components/Button";
+import SuccessModal from "../components/SuccessModal";
 
 const RegisterAthletePage = () => {
     const navigate = useNavigate();
@@ -17,10 +18,12 @@ const RegisterAthletePage = () => {
         purchaseStatus: false, 
     });
 
+    const [showSuccess, setShowSuccess] = useState(false);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         await createAthlete(athlete);
-        navigate("/athletes");
+        setShowSuccess(true);
     };
 
     return (
@@ -88,6 +91,15 @@ const RegisterAthletePage = () => {
                         Register Athlete
                     </Button>
                 </form>
+
+                <SuccessModal
+                show={showSuccess}
+                message="Athlete added succesfully!"
+                onClose={() => {
+                    setShowSuccess(false);
+                    navigate("/athletes");
+                }}
+                />
         </div>
     );
 };

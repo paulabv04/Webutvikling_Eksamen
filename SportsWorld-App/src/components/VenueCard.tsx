@@ -1,5 +1,6 @@
 
 import type { IVenue } from "../interfaces/IVenue";
+import { IMAGE_BASE_PATH } from "../global";
 
 interface VenuesCardProps {
     venue: IVenue;
@@ -13,7 +14,7 @@ export default function VenueCard({ venue, onDelete, onEdit }: VenuesCardProps) 
             { /* Bilde-topp */ }
             <div className="h-32 bg-gray-200">
                 <img 
-                src={venue.image}
+                src={`${IMAGE_BASE_PATH}${venue.image}`}
                 alt={venue.name}
                 className="w-full h-full object-cover"
                 onError={(e) => {

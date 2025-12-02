@@ -2,6 +2,7 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { useVenue } from "../contexts/VenueContext";
+import SuccessModal from "../components/SuccessModal";
 
 export default function AddVenuePage() {
     const { venues, addVenue } = useVenue(); // henter fra context
@@ -10,6 +11,7 @@ export default function AddVenuePage() {
     const [name, setName] = useState("");
     const [capacity, setCapacity] = useState<number | "">("");
     const [image, setImage] = useState("");
+    const [showSuccess, setShowSuccess] = useState(false);
 
 
     // submit av skjema
@@ -27,6 +29,8 @@ export default function AddVenuePage() {
                 capacity: Number(capacity),
                 image,
             });
+
+            setShowSuccess(true);
 
             // tøm inputfeltene etter post
             setName("");
@@ -56,6 +60,7 @@ export default function AddVenuePage() {
                     placeholder="e.g. Centre Court, Wimbledon"
                     onChange={(e) => setName(e.target.value)}
                     className="w-full border border-[#bfa27a] rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#1d4e39]"
+                    required
                     />
                 </div>
 
@@ -70,6 +75,7 @@ export default function AddVenuePage() {
                         setCapacity(value === "" ? "" : Number(value));
                     }}
                     className="w-full border border-[#bfa27a] rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#1d4e39]"
+                    required
                     />
                 </div>
 
@@ -81,6 +87,7 @@ export default function AddVenuePage() {
                     placeholder="e.g. /images/wimbledon.jpg"
                     onChange={(e) => setImage(e.target.value)}
                     className="w-full border border-[#bfa27a] rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#1d4e39]"
+                    required
                     />
                 </div>
 
@@ -92,6 +99,12 @@ export default function AddVenuePage() {
                 </button>
                 </form>
 
+                <SuccessModal
+                show={showSuccess}
+                message="Venue added successfully!"
+                onClose={() => setShowSuccess(false)}
+                />
+                
                 {/* Liste over venues */}
                 <h3 className="text-xl font-semibold text-[#0f3d2e] mb-3"> All Venues </h3>
 
@@ -110,7 +123,7 @@ export default function AddVenuePage() {
                         ))}
                     </ul>
                 )}
-            </div>
+                </div>
         </div>
     );
 }

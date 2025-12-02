@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import type { ChangeEvent } from "react";
 import venueService from "../services/VenueService";
 import type { IVenue } from "../interfaces/IVenue";
+import { IMAGE_BASE_PATH } from "../global";
 
 export default function VenueListPage() {
     const [venues, setVenues] = useState<IVenue[]>([]);
@@ -72,7 +73,7 @@ export default function VenueListPage() {
                                 { /* Bilde */ }
                                 <div className="h-32 bg-gray-200">
                                     <img 
-                                    src={v.image}
+                                    src={`${IMAGE_BASE_PATH}${v.image}`}
                                     alt={v.name}
                                     className="w-full h-full object-cover"
                                     onError={(e) => {
@@ -93,9 +94,6 @@ export default function VenueListPage() {
                                         <span className="font-medium">
                                             {v.capacity.toLocaleString()} people
                                         </span>
-                                    </p>
-                                    <p className="text-xs text-gray-500 break-all">
-                                        Image path: {v.image}
                                     </p>
                                 </div>
                             </div>

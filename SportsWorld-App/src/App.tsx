@@ -8,6 +8,7 @@ import AddVenuePage from "./pages/AddVenuePage";
 import VenueListPage from "./pages/VenueListPage";
 import Homepage from "./pages/HomePage";
 import RegisterAthletePage from "./pages/RegisterAthletePage";
+import FinancePage from "./pages/FinancePage";
 
 
 function App() {
@@ -19,10 +20,12 @@ function App() {
         <Routes>
           { /* Home - midlertidig finaceside */ }
           <Route path="/" element={<FinancePage />} />
+          
 
           { /* Athletes */ }
           <Route path="/athletes" element={<AthletesPage />} />
           <Route path="/athletes/edit/:id" element={<EditAthletePage />} />
+          <Route path="/athletes/register" element={<RegisterAthletePage />} />
           
           { /* Venues */ }
           <Route path="/venues" element={<VenueListPage />} />

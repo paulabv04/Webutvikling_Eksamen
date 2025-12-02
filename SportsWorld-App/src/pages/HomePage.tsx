@@ -1,7 +1,7 @@
 
 import { useVenue } from "../contexts/VenueContext";
 import VenueCard from "../components/VenueCard";
-
+import { useAthlete } from "../contexts/AthleteContext";
 
 export default function Homepage(){
 
