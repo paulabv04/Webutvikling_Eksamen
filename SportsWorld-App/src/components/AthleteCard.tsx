@@ -15,7 +15,7 @@ const AthleteCard = ({athlete, onDelete, onPurchase}: AthleteCardProps) => {
     const navigate = useNavigate();
    
     return (
-        <div className="border border-tennisGreen/50 rounded-xl p-5 shadow-sm hover:shadow-[0_4px_12px_rgba(26,60,52,0.5)] transition p-5">
+        <div className="bg-white border border-tennisGreen/50 rounded-xl p-5 shadow-sm hover:shadow-[0_4px_12px_rgba(26,60,52,0.5)] transition p-5">
 
             {/*Viser bilde av athlete*/}
             <img 

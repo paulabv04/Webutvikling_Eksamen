@@ -9,6 +9,7 @@ import SuccessModal from "../components/SuccessModal";
 const RegisterAthletePage = () => {
     const navigate = useNavigate();
 
+    //Holder på input-verdiene til ny athlete
     const[athlete, setAthlete] = useState<IAthlete>({
         id:0, 
         name: "",
@@ -20,6 +21,7 @@ const RegisterAthletePage = () => {
 
     const [showSuccess, setShowSuccess] = useState(false);
 
+    //Sender ny athlete til API
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         await createAthlete(athlete);
@@ -27,51 +29,59 @@ const RegisterAthletePage = () => {
     };
 
     return (
-        <div className="p-6 max-w-xl mx-auto">
-            <h1 className="text-2xl font-bold mb-4">Register New Athlete</h1>
+        <div className="min-h-screen bg-tennisSand&40 py-10 px-4">
+            <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-lg border border-tennisGreen/50 p-8">
 
+            {/*Tittel*/}
+            <h1 className="text-3xl font-bold text-tennisGreen mb-6">Register New Athlete</h1>
+
+            {/*Skjema*/}
             <form onSubmit = {handleSubmit} className="space-y-4">
 
+            {/*Navn*/}
             <div>
-                        <label>Name</label>
-                        <input
+                <label className="block text-tennisGreen font-medium mb-1">Name</label>
+                     <input
                         type="text"
                         value={athlete.name}
                         onChange={(e) =>
                             setAthlete({...athlete, name: e.target.value})} 
-                        className="border p-2 w-full"
+                        className="w-full rounded-xl border border-tennisGreen/40 p-3 shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2 focus:ring-tennisGreen"
                         required
                         />
                     </div>
                     
+                    {/*Kjønn*/}
                     <div>
-                        <label>Gender</label>
+                        <label className="block text-tennisGreen font-medium mb-1">Gender</label>
                         <select 
                         value={athlete.gender}
                         onChange={(e) =>
                             setAthlete({...athlete, gender: e.target.value})
                         } 
-                        className="border p-2 w-full"
+                        className="w-full rounded-xl border border-tennisGreen/40 p-3 shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2 focus:ring-tennisGreen"
                         >
                             <option>Male</option>
                             <option>Female</option>
                         </select>
                     </div>
 
+                    {/*Pris*/}
                     <div>
-                        <label>Price</label>
+                        <label className="block text-tennisGreen font-medium mb-1">Price</label>
                         <input
                         type="number"
                         value={athlete.price}
                         onChange={(e) =>
                             setAthlete({...athlete, price: Number(e.target.value)})} 
-                        className="border p-2 w-full"
+                        className="w-full rounded-xl border border-tennisGreen/40 p-3 shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2 focus:ring-tennisGreen"
                         required
                         />
                     </div>
 
+                    {/*Bilde*/}
                     <div>
-                        <label>Choose Image</label>
+                        <label className="block text-tennisGreen font-medium mb-1">Choose Image</label>
                         <input
                         type="file"
                         accept="image/*"
@@ -83,7 +93,7 @@ const RegisterAthletePage = () => {
 
                             setAthlete({ ...athlete, image: uploadedFileName});
                         }}
-                        className="border p-2 w-full"
+                        className="w-full rounded-xl border border-tennisGreen/40 p-3 shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2 focus:ring-tennisGreen"
                         />
                     </div>
                     
@@ -101,6 +111,7 @@ const RegisterAthletePage = () => {
                 }}
                 />
         </div>
+    </div>
     );
 };
 
