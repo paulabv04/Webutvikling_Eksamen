@@ -21,6 +21,8 @@ SportsWorldAPI/appsettings.Development.json
 SportsWorldAPI/appsettings.json
 *.db-shm
 *.db-wal
+SportsWorldAPI/SportsWorld.db
+*.db
 
 
 # ===== System / IDE =====
