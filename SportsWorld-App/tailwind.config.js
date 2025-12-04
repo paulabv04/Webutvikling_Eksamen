@@ -15,6 +15,7 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui"],
+        elegant: ["Great Vibes", "cursive"],
       }
     }
   },

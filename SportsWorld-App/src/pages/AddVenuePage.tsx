@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { useVenue } from "../contexts/VenueContext";
 import SuccessModal from "../components/SuccessModal";
+import venueService from "../services/VenueService";
 
 export default function AddVenuePage() {
     const { venues, addVenue } = useVenue(); // henter fra context
@@ -44,7 +45,7 @@ export default function AddVenuePage() {
 
     return (
 
-        <div className="min-h-screen bg-[#f6f4ef] flex justify-center py-10 px-4">
+        <div className="min-h-screen bg-tennisSand flex justify-center py-10 px-4">
             <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg border border-[#b4a27a] p-8">
             <h2 className="text-3xl font-bold mb-2 text-[#0f3d2e]"> Add new Venue </h2>
             <p className="text-sm text-[#1d4e39] mb-6">
@@ -80,13 +81,18 @@ export default function AddVenuePage() {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium text-[#0f3d2e] mb-1"> Image path / URL </label>
+                    <label className="block text-sm font-medium text-[#0f3d2e] mb-1"> Image </label>
                     <input
-                    type="text"
-                    value={image}
-                    placeholder="e.g. /images/wimbledon.jpg"
-                    onChange={(e) => setImage(e.target.value)}
-                    className="w-full border border-[#bfa27a] rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#1d4e39]"
+                    type="file"
+                    accept="image/*"
+                    onChange={async (e) => {
+                        if (!e.target.files || e.target.files.length === 0) return;
+                        const file = e.target.files[0];
+
+                        const uploaded = await venueService.uploadImage(file);
+                        setImage(uploaded);
+                    }}
+                    className="w-full border border-[#bfa27a] rounded-lg p-2"
                     required
                     />
                 </div>

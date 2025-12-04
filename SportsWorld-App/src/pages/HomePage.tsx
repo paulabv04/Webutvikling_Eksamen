@@ -26,7 +26,7 @@ export default function Homepage(){
                 <div className="absolute inset-0 bg-gradient-to-b from-black/25 to-black/60"></div>
 
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-                    <h1 className="text-6xl md:text-8xl font-serif font-light tracking-wide text-white drop-shadow-xl">
+                    <h1 className="text-6xl md:text-8xl font-serif font-light tracking-wide text-tennisSand drop-shadow-xl">
                         SportsWorld Tennis
                     </h1>
                 </div>
@@ -34,7 +34,7 @@ export default function Homepage(){
             </section>
 
             <section className="mt-16">
-                <h2 className="flex gap-4 px-2 pb-4 snap-x snap-mandatory">
+                <h2 className="flex gap-4 px-2 pb-4 snap-x snap-mandatory font-serif text-3xl">
                     Explore Athletes
                 </h2>
 
@@ -57,7 +57,7 @@ export default function Homepage(){
 
 
             <section className="mt-16">
-                <h2 className="flex gap-4 px-2 pb-4 snap-x snap-mandatory">
+                <h2 className="flex gap-4 px-2 pb-4 snap-x snap-mandatory font-serif text-3xl">
                     Explore Venues
                 </h2>
 

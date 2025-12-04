@@ -33,7 +33,22 @@ const venueService = {
     // DELETE: slett venue
     async delete(id: number): Promise<void> {
         await axios.delete(`${API_URL}/${id}`);
+    },
+
+    
+    async uploadImage(file: File): Promise<string> {
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const response = await axios.post(`${API_URL}/upload`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        });
+
+    return response.data;
     }
+
 };
 
 export default venueService;
