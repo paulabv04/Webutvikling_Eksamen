@@ -1,14 +1,16 @@
 
 import type { IVenue } from "../interfaces/IVenue";
 import { IMAGE_BASE_PATH } from "../global";
+import { useNavigate } from "react-router-dom";
+
 
 interface VenuesCardProps {
     venue: IVenue;
-    onDelete?: () => void;
-    onEdit?: () => void; 
+    onDelete?: (id:number) => void;
 }
 
-export default function VenueCard({ venue, onDelete, onEdit }: VenuesCardProps) {
+export default function VenueCard({ venue, onDelete, }: VenuesCardProps) {
+    const navigate = useNavigate();
     return (
         <div className="bg-white rounded-2xl border border-tennisDark shadow-sm overflow-hidden flex flex-col">
             { /* Bilde-topp */ }
@@ -35,28 +37,27 @@ export default function VenueCard({ venue, onDelete, onEdit }: VenuesCardProps) 
             </span>
             </p>
 
-            {(onEdit || onDelete) && (
-                <div className="mt-3 flex gap-2">
-                    {onEdit && (
-                        <button 
-                        type="button"
-                        onClick={onEdit}
-                        className="flex-1 text-xs py-1 rounded-lg bg-[#0f3d2e] text-[#f6f4ef] hover:bg-[1d4e39] transition"
-                        >
-                            Edit
-                        </button>    
-                    )}
-                    {onDelete && (
-                        <button
-                        type="button"
-                        onClick={onDelete}
-                        className="flex-1 text-xs py-1 rounded-lg bg-red-600 text-white hover:bg-red-700 transition"
-                        >
-                            Delete
-                        </button>
-                    )}
-                    </div>
+            <div className="mt-3 flex gap-2">
+                {/* Editknapp, navigerer til edit-side */ }
+                <button
+                type="button"
+                onClick={() => navigate(`/venues/edit/${venue.id}`)}
+                className="flex-1 text-xs py-1 rounded-lg bg-[#0f3d2e] text-[#f6f4ef] hover:bg-[#1d4e39] transition"
+                >
+                    Edit
+                </button>
+
+                { /* Deleteknapp når onDelete er sendt inn */ }
+                { onDelete && (
+                    <button
+                    type="button"
+                    onClick={() => onDelete(venue.id)}
+                    className="flex-1 text-xs py-1 rounded-lg bg-red-600 text-white hover:bg-red-700 transition"
+                    >
+                        Delete
+                    </button>
                 )}
+            </div>
             </div>
         </div>
     );
