@@ -47,26 +47,26 @@ export default function AddVenuePage() {
 
         <div className="min-h-screen bg-tennisSand flex justify-center py-10 px-4">
             <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg border border-[#b4a27a] p-8">
-            <h2 className="text-3xl font-bold mb-2 text-[#0f3d2e]"> Add new Venue </h2>
-            <p className="text-sm text-[#1d4e39] mb-6">
+            <h2 className="text-3xl font-serif mb-2 text-tennisGreen"> Add new Venue </h2>
+            <p className="text-sm text-tennisDark mb-6">
                 Register a new premium tennis venue for SportsWorld events.
             </p>
             {/* Skjema for å legge til venue */}
             <form onSubmit={handleSubmit} className="space-y-4 mb-8">
                 <div>
-                    <label className="block text-sm font-medium text-[#0f3d2e]"> Venue Name </label>
+                    <label className="block text-sm font-medium text-tennisDark"> Venue Name </label>
                     <input 
                     type="text"
                     value={name}
                     placeholder="e.g. Centre Court, Wimbledon"
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full border border-[#bfa27a] rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#1d4e39]"
+                    className="w-full border border-tennisDark rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#1d4e39]"
                     required
                     />
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium text-[#0f3d2e] mb-1"> Capacity </label>
+                    <label className="block text-sm font-medium text-tennisDark mb-1"> Capacity </label>
                     <input
                     type="number"
                     value={capacity}
@@ -75,13 +75,13 @@ export default function AddVenuePage() {
                         const value = e.target.value;
                         setCapacity(value === "" ? "" : Number(value));
                     }}
-                    className="w-full border border-[#bfa27a] rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#1d4e39]"
+                    className="w-full border border-tennisDark rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#1d4e39]"
                     required
                     />
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium text-[#0f3d2e] mb-1"> Image </label>
+                    <label className="block text-sm font-medium text-tennisDark mb-1"> Image </label>
                     <input
                     type="file"
                     accept="image/*"
@@ -112,19 +112,19 @@ export default function AddVenuePage() {
                 />
                 
                 {/* Liste over venues */}
-                <h3 className="text-xl font-semibold text-[#0f3d2e] mb-3"> All Venues </h3>
+                <h3 className="text-xl font-semibold text-tennisGreen mb-3"> All Venues </h3>
 
                 {venues.length === 0 ? (
-                    <p className="text-gray-500 italic">No venues added yet.</p>
+                    <p className="text-tannisDark italic">No venues added yet.</p>
                 ) : (
                     <ul className="space-y-2">
                         {venues.map((v, index) => (
                             <li
                             key={v.id}
-                            className="p-3 bg-[#f6f4ef] rounded flex flex-col border-l-4 border-[#bfa27a] shadow-sm"
+                            className="p-3 bg-tennisSand rounded flex flex-col border-l-4 border-tennisGreen shadow-sm"
                         >
-                            <span className="font-semibold text-[#0f3d2e]"> {index + 1}. {v.name} </span>
-                            <span className="text-sm text-[#1d4e39]"> Capacity: {v.capacity} - {v.image} </span>
+                            <span className="font-semibold text-tennisDark"> {index + 1}. {v.name} </span>
+                            <span className="text-sm text-tennisDark"> Capacity: {v.capacity} </span>
                             </li>
                         ))}
                     </ul>
