@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import type { ChangeEvent } from "react";
 import venueService from "../services/VenueService";
 import type { IVenue } from "../interfaces/IVenue";
-import { IMAGE_BASE_PATH } from "../global";
+import VenueCard from "../components/VenueCard";
 
 export default function VenueListPage() {
     const [venues, setVenues] = useState<IVenue[]>([]);
     const [filteredVenues, setFilteredVenues] = useState<IVenue[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
+
 
     // Hent alle venues fra API
     const fetchVenues = async () => {
@@ -25,6 +26,20 @@ export default function VenueListPage() {
     useEffect(() => {
         fetchVenues();
     }, []);
+
+    // sletter venue og laster listen på nytt
+    const handleDelete = async (id: number) => {
+        const confirmed = confirm("Delete this venue");
+        if (!confirmed) return;
+
+        try {
+            await venueService.delete(id);
+            await fetchVenues(); // henter oppdatert liste
+        } catch (error) {
+            console.error("Error deleting venue.", error);
+            alert("Failed to delete venue.");
+        }
+    };
 
     // Håndterer søk på navn 
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -60,46 +75,16 @@ export default function VenueListPage() {
                         />
                         </div>
 
-                        {/* Liste */ }
-                        {filteredVenues.length === 0 ? (
-                            <p className="text-gray-500 italic">No venues found. Try another search or add a new venue on the admin page.</p>
-                        ) : (
+                        { /* Liste */ }
                         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                             {filteredVenues.map((v) => (
-                                <div 
-                                    key={v.id}
-                                    className="bg-[#f6f4ef] rounded-xl border border-[#e3d6b3] shadow-sm overflow-hidden flex flex-col"
-                                >
-                                { /* Bilde */ }
-                                <div className="h-32 bg-gray-200">
-                                    <img 
-                                    src={`${IMAGE_BASE_PATH}${v.image}`}
-                                    alt={v.name}
-                                    className="w-full h-full object-cover"
-                                    onError={(e) => {
-                                        // Skjuler bildet vis URL er feil
-                                        (e.currentTarget as HTMLImageElement).style.display =
-                                        "none";
-                                    }}
+                                <VenueCard
+                                key={v.id}
+                                venue={v}
+                                onDelete={handleDelete}
                                 />
-                                </div>
-
-                                {/* Text info */ }
-                                <div className="p-4 flex flex-col gap-1">
-                                    <h2 className="text-lg font-semibold text-[#0f3d2e]">
-                                        {v.name}
-                                    </h2>
-                                    <p className="text-sm text-[#1d4e39]">
-                                        Capacity:{" "}
-                                        <span className="font-medium">
-                                            {v.capacity.toLocaleString()} people
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
+                            ))}
                         </div>
-                    )}
                 </div>
             </div>
     );
