@@ -8,6 +8,7 @@ import AddVenuePage from "./pages/AddVenuePage";
 import VenueListPage from "./pages/VenueListPage";
 import Homepage from "./pages/HomePage";
 import RegisterAthletePage from "./pages/RegisterAthletePage";
+import EditVenuePage from "./pages/EditVenuePage";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           
           { /* Venues */ }
           <Route path="/venues" element={<VenueListPage />} />
+          <Route path="/venues/edit/:id" element={<EditVenuePage />} />
           <Route path="/venues/admin" element={<AddVenuePage />} />
 
           <Route 
