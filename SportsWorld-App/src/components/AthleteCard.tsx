@@ -15,13 +15,13 @@ const AthleteCard = ({athlete, onDelete, onPurchase}: AthleteCardProps) => {
     const navigate = useNavigate();
    
     return (
-        <div className="bg-white border border-tennisGreen/50 rounded-xl p-5 shadow-sm hover:shadow-[0_4px_12px_rgba(26,60,52,0.5)] transition p-5">
+        <div className=" bg-white border border-tennisGreen/50 rounded-xl p-4 shadow-md hover:shadow-[0_4px_12px_rgba(26,60,52,0.5)] flex flex-col items-center">
 
             {/*Viser bilde av athlete*/}
             <img 
                 src={`${IMAGE_BASE_PATH}${athlete.image}`}
                 alt={athlete.name}
-                className="w-full h-56 object-contain bg-tennisSand rounded-xl"
+                className="w-full h-full object-cover bg-tennisSand rounded-xl"
                 onError={(e) => {
                     (e.currentTarget as HTMLImageElement).style.display = "none";
                 }}
