@@ -45,7 +45,7 @@ const EditAthletePage = () => {
                 <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-lg border border-tennisGreen/50 p-8">
 
                 {/*Tittel*/}
-                <h1 className="text-3xl front-bold text-tennisGreen mb-6">Edit Athlete</h1>
+                <h1 className="text-3xl font-serif text-tennisGreen mb-6">Edit Athlete</h1>
 
                 {/*Skjema for å redigere*/}
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -105,7 +105,7 @@ const EditAthletePage = () => {
                         } 
                         className="w-full rounded-xl border border-tennisGreen/40 p-3 shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2 focus:ring-tennisGreen"
                         >
-                          <option value="false">Not purchased</option>
+                        <option value="false">Not purchased</option>
                             <option value="true">Purchased</option>
                         </select>
                     </div>

@@ -69,7 +69,7 @@ export default function VenueListPage() {
 
     return (
         <div className="min-h-screen bg-tennisSand py-10 px-4 flex justify-center">
-            <div className="w-full max-w-5xl bg-white rounded-2xl shadow-lg border border-tennisDark p-8">
+            <div className="w-full max-w-5xl bg-white rounded-2xl shadow-sm border border-tennisDark p-8">
 
                 {/* tittel */}
                 <div className="mb-6">
