@@ -54,14 +54,15 @@ export default function Navbar() {
 
             { /* Athletes dropdown */ }
             <div className="relative group">
-                <button 
+                <NavLink
+                    to="/athletes"
                     className={`
                         px-3 py-1 rounded-full transition
                         ${isAthletes ? "bg-tennisGreen text-white" : "text-tennisDark hover:bg-tennisPink/40"}
                     `}
                 >
                     Athletes
-                </button>
+                </NavLink>
 
                  <div className="absolute left-0 mt-2 w-44 bg-tennisSand rounded-xl shadow-lg border border-tennisGreen/20 py-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-1">
 
@@ -82,13 +83,15 @@ export default function Navbar() {
 
             { /* Venues dropdown */ }
             <div className="relative group">
-                <button className={`
+                <NavLink
+                    to="/venues"
+                    className={`
                         px-3 py-1 rounded-full transition
                         ${isVenues ? "bg-tennisGreen text-white" : "text-tennisDark hover:bg-tennisPink/40"}
                     `}
                 >
-                    Veneus
-                </button>
+                    Venues
+                </NavLink>
 
                 <div className="absolute left-0 mt-2 w-44 bg-tennisSand rounded-xl shadow-lg border border-tennisGreen/20 py-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-1">
 
