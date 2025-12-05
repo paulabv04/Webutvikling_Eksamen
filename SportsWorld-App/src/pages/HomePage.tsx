@@ -31,7 +31,7 @@ export default function Homepage(){
 
                 {/*Tittel oppå video*/}
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-                    <h1 className="text-6xl md:text-8xl font-serif font-light tracking-wide text-white drop-shadow-xl">
+                    <h1 className="text-6xl md:text-8xl font-serif font-light tracking-wide text-tennisSand drop-shadow-xl">
                         SportsWorld Tennis
                     </h1>
                 </div>
@@ -40,7 +40,7 @@ export default function Homepage(){
 
             {/*Horisontal scroll for athletes*/}
             <section className="mt-16">
-                <h2 className="flex gap-4 px-2 pb-4 snap-x snap-mandatory">
+                <h2 className="flex gap-4 px-2 pb-4 snap-x snap-mandatory font-serif text-3xl">
                     Explore Athletes
                 </h2>
 
@@ -64,7 +64,7 @@ export default function Homepage(){
 
             {/*Horisontal scroll for venues*/}
             <section className="mt-16">
-                <h2 className="flex gap-4 px-2 pb-4 snap-x snap-mandatory">
+                <h2 className="flex gap-4 px-2 pb-4 snap-x snap-mandatory font-serif text-3xl">
                     Explore Venues
                 </h2>
                 

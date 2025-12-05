@@ -11,18 +11,18 @@ export default function Navbar() {
     const isVenues = pathname.startsWith("/venues");
 
     return (
-    <header className="bg-tennisSand border-b border-tennisGreen/30 shadow-sm relative z-50">
+    <header className="bg-white border-b border-tennisGreen/30 shadow-sm relative z-50">
         <nav className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
 
             { /* Logo */ }
-            <div className="flex items-baseline gap-2">
+            <NavLink to="/" className="flex items-baseline gap-2 hover:opacity-80 transition">
                 <span className="font-serif text-2xl tracking-wide text-tennisGreen"> 
                     SportsWorld 
                 </span>
                 <span className="text-xs uppercase tracking-[0.25em] text-tennisDark/70"> 
                     Tennis 
                 </span>
-            </div>
+            </NavLink>
 
             { /* Links */ }
             <div className="flex items-center gap-6 text-sm">
@@ -70,7 +70,7 @@ export default function Navbar() {
                         to="/athletes"
                         className="block px-4 py-2 text-sm text-tennisDark hover:bg-tennisPink/30"
                     > 
-                        Se all Athletes 
+                        See all Athletes 
                     </NavLink>
 
                     <NavLink
