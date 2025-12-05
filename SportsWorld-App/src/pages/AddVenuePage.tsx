@@ -50,7 +50,7 @@ export default function AddVenuePage() {
             <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-lg border border-tennisGreen/50 p-8">
 
                 {/*Tittel*/}
-                <h1 className="text-4xl font-serif text-tennisGreen mb-1"> Add new venue </h1>
+                <h1 className="text-4xl font-serif text-tennisGreen mb-1"> Register new Venue </h1>
                 <p className="text-sm text-tennisDark mb-6">
                     Register a new premium tennis venue for SportsWorld events.
                 </p>
