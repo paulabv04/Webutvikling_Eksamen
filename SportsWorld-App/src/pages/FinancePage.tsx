@@ -51,7 +51,7 @@ export default function FinancePage() {
 
                 <button
                     onClick={handleLoan}
-                    className="bg-[#d4c28a] text-[#12382b] px-4 py-2 rounded font-semibold">
+                    className="bg-tennisSand text-tennisGreen px-4 py-2 rounded font-semibold">
                         Add loan
                 </button>
             </section>

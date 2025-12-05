@@ -4,9 +4,10 @@ import type { FormEvent } from "react";
 import { useVenue } from "../contexts/VenueContext";
 import SuccessModal from "../components/SuccessModal";
 import venueService from "../services/VenueService";
+import Button from "../components/Button";
 
 export default function AddVenuePage() {
-    const { venues, addVenue } = useVenue(); // henter fra context
+    const { addVenue } = useVenue(); // henter fra context
 
     // input felt state
     const [name, setName] = useState("");
@@ -45,22 +46,25 @@ export default function AddVenuePage() {
 
     return (
 
-        <div className="min-h-screen bg-tennisSand flex justify-center py-10 px-4">
-            <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg border border-[#b4a27a] p-8">
-            <h2 className="text-3xl font-serif mb-2 text-tennisGreen"> Add new Venue </h2>
-            <p className="text-sm text-tennisDark mb-6">
-                Register a new premium tennis venue for SportsWorld events.
-            </p>
-            {/* Skjema for å legge til venue */}
-            <form onSubmit={handleSubmit} className="space-y-4 mb-8">
+        <div className="min-h-screen bg-tennisSand/40 py-10 px-4">
+            <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-lg border border-tennisGreen/50 p-8">
+
+                {/*Tittel*/}
+                <h1 className="text-4xl font-serif text-tennisGreen mb-1"> Add new venue </h1>
+                <p className="text-sm text-tennisDark mb-6">
+                    Register a new premium tennis venue for SportsWorld events.
+                </p>
+
+                {/* Skjema for å legge til venue */}
+                <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                    <label className="block text-sm font-medium text-tennisDark"> Venue Name </label>
+                    <label className="block text-sm font-medium text-tennisDark"> Venue name </label>
                     <input 
                     type="text"
                     value={name}
                     placeholder="e.g. Centre Court, Wimbledon"
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full border border-tennisDark rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#1d4e39]"
+                    className="w-full rounded-xl border border-tennisGreen/40 p-3 shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2 focus:ring-tennisGreen"
                     required
                     />
                 </div>
@@ -75,7 +79,7 @@ export default function AddVenuePage() {
                         const value = e.target.value;
                         setCapacity(value === "" ? "" : Number(value));
                     }}
-                    className="w-full border border-tennisDark rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#1d4e39]"
+                    className="w-full border border-tennisDark rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-tennisGreen"
                     required
                     />
                 </div>
@@ -92,17 +96,14 @@ export default function AddVenuePage() {
                         const uploaded = await venueService.uploadImage(file);
                         setImage(uploaded);
                     }}
-                    className="w-full border border-[#bfa27a] rounded-lg p-2"
+                    className="w-full rounded-xl border border-tennisGreen/40 p-3 shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2 focus:ring-tennisGreen"
                     required
                     />
                 </div>
 
-                <button 
-                type="submit"
-                className="w-full bg-[#0f3d2e] text-[#f6f4ef] py-2 rounded-lg font-semibold hover:bg-[#1d4e39] transition"
-                >
-                Add Venue
-                </button>
+                <Button variant="primary" type="submit">
+                        Register venue
+                    </Button>
                 </form>
 
                 <SuccessModal
@@ -110,26 +111,7 @@ export default function AddVenuePage() {
                 message="Venue added successfully!"
                 onClose={() => setShowSuccess(false)}
                 />
-                
-                {/* Liste over venues */}
-                <h3 className="text-xl font-semibold text-tennisGreen mb-3"> All Venues </h3>
-
-                {venues.length === 0 ? (
-                    <p className="text-tannisDark italic">No venues added yet.</p>
-                ) : (
-                    <ul className="space-y-2">
-                        {venues.map((v, index) => (
-                            <li
-                            key={v.id}
-                            className="p-3 bg-tennisSand rounded flex flex-col border-l-4 border-tennisGreen shadow-sm"
-                        >
-                            <span className="font-semibold text-tennisDark"> {index + 1}. {v.name} </span>
-                            <span className="text-sm text-tennisDark"> Capacity: {v.capacity} </span>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-                </div>
+            </div>
         </div>
     );
 }

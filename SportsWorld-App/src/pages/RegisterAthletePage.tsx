@@ -29,21 +29,23 @@ const RegisterAthletePage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-tennisSand&40 py-10 px-4">
+        <div className="min-h-screen bg-tennisSand/40 py-10 px-4">
             <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-lg border border-tennisGreen/50 p-8">
 
             {/*Tittel*/}
-            <h1 className="text-3xl font-serif text-tennisGreen mb-6">Register New Athlete</h1>
+            <h1 className="text-4xl font-serif text-tennisGreen mb-1">Register new Athlete</h1>
+            <p className="text-sm text-tennisDark mb-6">Register a new premium tennis venue for SportsWorld events.</p>
 
             {/*Skjema*/}
             <form onSubmit = {handleSubmit} className="space-y-4">
 
             {/*Navn*/}
             <div>
-                <label className="block text-tennisGreen font-medium mb-1">Name</label>
+                <label className="block text-sm font-medium text-tennisDark">Name</label>
                      <input
                         type="text"
                         value={athlete.name}
+                        placeholder="e.g. Kasper Rud"
                         onChange={(e) =>
                             setAthlete({...athlete, name: e.target.value})} 
                         className="w-full rounded-xl border border-tennisGreen/40 p-3 shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2 focus:ring-tennisGreen"
@@ -53,7 +55,7 @@ const RegisterAthletePage = () => {
                     
                     {/*Kjønn*/}
                     <div>
-                        <label className="block text-tennisGreen font-medium mb-1">Gender</label>
+                        <label className="block text-sm font-medium text-tennisDark">Gender</label>
                         <select 
                         value={athlete.gender}
                         onChange={(e) =>
@@ -68,10 +70,11 @@ const RegisterAthletePage = () => {
 
                     {/*Pris*/}
                     <div>
-                        <label className="block text-tennisGreen font-medium mb-1">Price</label>
+                        <label className="block text-sm font-medium text-tennisDark">Price</label>
                         <input
                         type="number"
                         value={athlete.price}
+                        placeholder="e.g. 300000"
                         onChange={(e) =>
                             setAthlete({...athlete, price: Number(e.target.value)})} 
                         className="w-full rounded-xl border border-tennisGreen/40 p-3 shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2 focus:ring-tennisGreen"
@@ -81,7 +84,7 @@ const RegisterAthletePage = () => {
 
                     {/*Bilde*/}
                     <div>
-                        <label className="block text-tennisGreen font-medium mb-1">Choose Image</label>
+                        <label className="block text-sm font-medium text-tennisDark">Choose Image</label>
                         <input
                         type="file"
                         accept="image/*"
@@ -98,7 +101,7 @@ const RegisterAthletePage = () => {
                     </div>
                     
                     <Button variant="primary" type="submit">
-                        Register Athlete
+                        Register athlete
                     </Button>
                 </form>
 

@@ -70,7 +70,7 @@ export default function Navbar() {
                         to="/athletes"
                         className="block px-4 py-2 text-sm text-tennisDark hover:bg-tennisPink/30"
                     > 
-                        See all Athletes 
+                        See all athletes 
                     </NavLink>
 
                     <NavLink
@@ -106,7 +106,7 @@ export default function Navbar() {
                     to="/venues/admin"
                     className="block px-4 py-2 text-sm text-tennisDark hover:bg-tennisPink/30"
                 >
-                    Add venue
+                    Register venue
                 </NavLink>
                 </div>
             </div>

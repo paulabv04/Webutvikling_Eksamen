@@ -4,11 +4,17 @@ import type { ChangeEvent } from "react";
 import venueService from "../services/VenueService";
 import type { IVenue } from "../interfaces/IVenue";
 import VenueCard from "../components/VenueCard";
+import ConfirmModal from "../components/ConfirmModal";
 
 export default function VenueListPage() {
+    //Loakl state for alle venues og filtrerte venues
     const [venues, setVenues] = useState<IVenue[]>([]);
     const [filteredVenues, setFilteredVenues] = useState<IVenue[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
+
+    //State for slettemodal
+    const [showConfirm, setShowConfirm] = useState(false);
+    const [pendingDeleteId, setPendingDeleteId] = useState<number | null>(null);
 
 
     // Hent alle venues fra API
@@ -27,18 +33,25 @@ export default function VenueListPage() {
         fetchVenues();
     }, []);
 
-    // sletter venue og laster listen på nytt
-    const handleDelete = async (id: number) => {
-        const confirmed = confirm("Delete this venue");
-        if (!confirmed) return;
+    // Åpner modal og lagrer id på venue som skal slettes
+    const startDelete = (id: number) => {
+        setPendingDeleteId(id);
+        setShowConfirm(true);
+    };
 
+    // Sletter valgt venue, når bruker bekrefter
+    const confirmDelete = async () => {
+        if(pendingDeleteId === null) return;
         try {
-            await venueService.delete(id);
+            await venueService.delete(pendingDeleteId);
             await fetchVenues(); // henter oppdatert liste
         } catch (error) {
             console.error("Error deleting venue.", error);
             alert("Failed to delete venue.");
         }
+
+        setShowConfirm(false);
+        setPendingDeleteId(null);
     };
 
     // Håndterer søk på navn 
@@ -57,9 +70,10 @@ export default function VenueListPage() {
     return (
         <div className="min-h-screen bg-tennisSand py-10 px-4 flex justify-center">
             <div className="w-full max-w-5xl bg-white rounded-2xl shadow-lg border border-tennisDark p-8">
+
                 {/* tittel */}
                 <div className="mb-6">
-                    <h1 className="text-4xl font-serif text-tennisGreen">All Venues</h1>
+                    <h1 className="flex gap-4 px-2 pb-4 font-serif text-5xl text-tennisGreen">All Venues</h1>
                     <p className="text-sm text-tennisDark">Overview of all registered tennis venues for SportsWorld</p>
                     </div>
 
@@ -71,7 +85,7 @@ export default function VenueListPage() {
                         value={searchTerm}
                         onChange={handleSearchChange}
                         placeholder="e.g. Centre Court, Wimbledon"
-                        className="w-full border border-tennisDark rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#1d4e39]"
+                        className="w-full border border-tennisDark rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-tennisDark"
                         />
                         </div>
 
@@ -84,11 +98,19 @@ export default function VenueListPage() {
                                 <VenueCard
                                 key={v.id}
                                 venue={v}
-                                onDelete={handleDelete}
+                                onDelete={() => startDelete(v.id)}
                                 />
                         ))}
                     </div>
                 )}
+
+                {/*Confirm Modal*/}
+                <ConfirmModal 
+                show={showConfirm}
+                message="Are you sure you ant to delete this venue?"
+                onConfirm={confirmDelete}
+                onCancel={() => setShowConfirm(false)}
+                />
             </div>
         </div>
     );
