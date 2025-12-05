@@ -34,7 +34,7 @@ const EditAthletePage = () => {
             await updateAthlete(athlete.id, athlete);
 
             //Send brukeren tilbake til oversikten
-            navigate("/"); 
+            navigate("/athletes"); 
         };
 
         //Viser loading før data er hentet

@@ -34,10 +34,12 @@ export default function FinancePage() {
     return (
         <div className="p-8 space-y-12">
 
+            <h1 className="flex gap-4 px-2 pb-4 snap-x snap-mandatory font-serif text-5xl" > Finances </h1>
+
             <FinanceCard finance={finance} /> 
 
-            <section className="bg-[#12382b] p-6 rounded-xl">
-                <h2 className="text-xl text-[#d4c28a] mb-3">Get a loan</h2>
+            <section className="bg-tennisGreen p-6 rounded-xl">
+                <h2 className="text-xl text-tennisSand mb-3">Get a loan</h2>
 
                 <input
                     type="number"

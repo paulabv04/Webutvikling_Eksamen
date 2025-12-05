@@ -33,7 +33,7 @@ const RegisterAthletePage = () => {
             <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-lg border border-tennisGreen/50 p-8">
 
             {/*Tittel*/}
-            <h1 className="text-3xl font-bold text-tennisGreen mb-6">Register New Athlete</h1>
+            <h1 className="text-3xl font-serif text-tennisGreen mb-6">Register New Athlete</h1>
 
             {/*Skjema*/}
             <form onSubmit = {handleSubmit} className="space-y-4">

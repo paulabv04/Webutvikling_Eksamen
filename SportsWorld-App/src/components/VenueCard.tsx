@@ -12,9 +12,9 @@ interface VenuesCardProps {
 export default function VenueCard({ venue, onDelete, }: VenuesCardProps) {
     const navigate = useNavigate();
     return (
-        <div className="bg-[#f6f4ef] rounded-2xl border border-[#b4a27a] shadow-sm overflow-hidden flex flex-col">
+        <div className="bg-white rounded-2xl border border-tennisDark shadow-sm overflow-hidden flex flex-col">
             { /* Bilde-topp */ }
-            <div className="h-32 bg-gray-200">
+            <div className="h-32 bg-white">
                 <img 
                 src={`${IMAGE_BASE_PATH}${venue.image}`}
                 alt={venue.name}
@@ -27,10 +27,10 @@ export default function VenueCard({ venue, onDelete, }: VenuesCardProps) {
 
         {/* Tekst-informasjon */ }
         <div className="p-4 flex flex-col gap-1">
-            <h2 className="text-lg font-semibold text-[#0f3d2e]">
+            <h2 className="text-lg font-semibold text-tennisDark">
                 {venue.name}
             </h2>
-            <p className="text-sm text-[#1d4e39]">
+            <p className="text-sm text-tennisDark">
             Capacity:{" "}
             <span className="font-medium">
                 {venue.capacity.toLocaleString()} people
