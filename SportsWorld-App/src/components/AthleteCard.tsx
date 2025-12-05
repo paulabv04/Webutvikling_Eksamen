@@ -19,10 +19,14 @@ const AthleteCard = ({athlete, onDelete, onPurchase}: AthleteCardProps) => {
 
             {/*Viser bilde av athlete*/}
             <img 
-            src={`${IMAGE_BASE_PATH}${athlete.image}`}
-            alt={athlete.name}
-            className="w-full h-56 object-contain bg-tennisSand rounded-xl"
+                src={`${IMAGE_BASE_PATH}${athlete.image}`}
+                alt={athlete.name}
+                className="w-full h-56 object-contain bg-tennisSand rounded-xl"
+                onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.display = "none";
+                }}
             />
+
 
             {/*Grunnleggende info om athlete*/}
             <h2 className="text-lg font-semibild mt-2 text-tennisGreen">{athlete.name}</h2>
