@@ -6,7 +6,7 @@ import { uploadImage } from "../services/ImageService";
 import Button from "../components/Button";
 
 const EditAthletePage = () => {
-    //HEnter id fra URL
+    //Henter id fra URL
     const {id} = useParams();
     const navigate = useNavigate();
 

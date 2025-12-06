@@ -37,7 +37,6 @@ export default function Homepage(){
                 </div>
 
             </section>
-
             {/*Horisontal scroll for athletes*/}
             <section className="mt-16">
                 <h2 className="flex gap-4 px-2 pb-4 snap-x snap-mandatory font-serif text-3xl">
