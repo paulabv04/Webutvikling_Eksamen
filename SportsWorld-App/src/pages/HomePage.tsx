@@ -51,9 +51,9 @@ export default function Homepage(){
                         {athletes.map((athlete)=>(
                             <div
                                 key={athlete.id}
-                                className="min-w-[250px] snap-center flex-shrink-0"
+                                className="snap-center flex-shrink-0"
                             >
-                                <AthleteCard athlete={athlete}/>
+                                <AthleteCard athlete={athlete} compact/>
                             </div>
                         ))}
 

@@ -18,7 +18,7 @@ export default function VenueCard({ venue, onDelete, }: VenuesCardProps) {
                 <img 
                 src={`${IMAGE_BASE_PATH}${venue.image}`}
                 alt={venue.name}
-                className="w-full h-56 object-contain bg-tennisSand rounded-xl"
+                className="w-full h-56 object-cover bg-tennisSand rounded-xl"
                 onError={(e) => {
                     (e.currentTarget as HTMLImageElement).style.display = "none";
                 }}
