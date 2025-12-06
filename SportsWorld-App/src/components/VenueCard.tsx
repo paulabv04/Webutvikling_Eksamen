@@ -8,9 +8,10 @@ import Button from "../components/Button";
 interface VenuesCardProps {
     venue: IVenue;
     onDelete?: (id:number) => void;
+    onEdit?: (id:number)=> void;
 }
 
-export default function VenueCard({ venue, onDelete, }: VenuesCardProps) {
+export default function VenueCard({ venue, onDelete, onEdit }: VenuesCardProps) {
     const navigate = useNavigate();
     return (
         <div className="bg-white border border-tennisGreen/50 rounded-xl p-5 shadow-sm hover:shadow-[0_4px_12px_rgba(26,60,52,0.5)] transition">
@@ -34,9 +35,11 @@ export default function VenueCard({ venue, onDelete, }: VenuesCardProps) {
 
         {/*Knapper*/ }
         <div className="flex gap-2 mt-4">
+            {onEdit && (
             <Button variant="primary" onClick={() => navigate(`/venues/edit/${venue.id}`)}>
                 Edit
             </Button>
+            )}
 
             {onDelete && (
                 <Button variant="danger" onClick={() => onDelete(venue.id)}>
