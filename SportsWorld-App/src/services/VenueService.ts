@@ -35,7 +35,7 @@ const venueService = {
         await axios.delete(`${API_URL}/${id}`);
     },
 
-    
+    // laster opp bilde for venue via eget upload-endepunkt og returnerer filnavn
     async uploadImage(file: File): Promise<string> {
         const formData = new FormData();
         formData.append("file", file);
@@ -46,6 +46,7 @@ const venueService = {
             },
         });
 
+    // backend returnerer filnavn som brukes i image-feltet på venue
     return response.data;
     }
 

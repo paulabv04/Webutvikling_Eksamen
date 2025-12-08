@@ -13,6 +13,7 @@ import EditVenuePage from "./pages/EditVenuePage";
 
 function App() {
   return (
+    // layout for hele frontend-applikasjonen
     <div className="min-h-screen bg-tennisSand text-tennisGreen">
       <Navbar />
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/venues/edit/:id" element={<EditVenuePage />} />
           <Route path="/venues/admin" element={<AddVenuePage />} />
 
+          { /* Fallback-route for alle uskjente URL-er */ }
           <Route 
           path="*"
           element={

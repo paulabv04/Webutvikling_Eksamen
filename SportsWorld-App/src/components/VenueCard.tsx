@@ -4,7 +4,7 @@ import { IMAGE_BASE_PATH } from "../global";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 
-
+// definerer hvilke props komponenten kan motta
 interface VenuesCardProps {
     venue: IVenue;
     onDelete?: (id:number) => void;
@@ -12,10 +12,11 @@ interface VenuesCardProps {
 }
 
 export default function VenueCard({ venue, onDelete, onEdit }: VenuesCardProps) {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Hook for å navigere til andre sider
     return (
+        // kort-container med styling og hover effekt
         <div className="bg-white border border-tennisGreen/50 rounded-xl p-5 shadow-sm hover:shadow-[0_4px_12px_rgba(26,60,52,0.5)] transition">
-            { /* Bilde-topp */ }
+            { /* Venue bilde */ }
                 <img 
                 src={`${IMAGE_BASE_PATH}${venue.image}`}
                 alt={venue.name}
@@ -25,9 +26,9 @@ export default function VenueCard({ venue, onDelete, onEdit }: VenuesCardProps) 
                 }}
             />
 
-        {/* Tekst-informasjon */ }
+        {/* Navn på venue */ }
         <h2 className="text-lg font-semibold text-tennisDark">{venue.name}</h2>
-
+        { /* Kapasitet som vises i tekst */ }
         <p className="text-sm text-tennisDark/70 text-sm">
             Capacity:{" "}
             <span className="font-medium">{venue.capacity.toLocaleString()} people</span>

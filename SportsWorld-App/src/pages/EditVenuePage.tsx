@@ -6,49 +6,54 @@ import venueService from "../services/VenueService";
 import Button from "../components/Button";
 
 export default function EditVenuePage() {
+    // leser id fra URL
     const { id } = useParams();
     const navigate = useNavigate();
 
+    // state for venue som skal redigeres og for loading-tilstand
     const [venue, setVenue] = useState<IVenue | null>(null);
     const [loading, setLoading] = useState(true);
 
-
+// når komponenten lastes inn, henter vi venue fra API basert på id 
 useEffect(() => {
     const loadVenue = async () => {
         if(!id) return;
 
         try {
             const data = await venueService.getById(Number(id));
-            setVenue(data);
+            setVenue(data); // lagrer venue i state
         } catch (error) {
             console.error("Error loading venue:", error);
             alert("Failed to load venue.");
         } finally { 
-            setLoading(false);
+            setLoading(false); // slutter å vise loading
         }
     };
 
     loadVenue();
 }, [id]);
 
+// håndterer innsending av skjema og lagrer endringer til backend
 const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!venue) return;
 
     try {
-        await venueService.update(venue.id, venue);
+        await venueService.update(venue.id, venue); // sender oppdatert venue til API
         alert("Venue updated successfully!");
-        navigate("/venues");     
+        navigate("/venues"); // sender brukeren tilbake til venue oversikten
     } catch (error) {
         console.error("Error updating venue:", error);
         alert("Failed to update venue.");
     }
 };
 
+// viser enkel loading mens data lastes 
 if (loading) {
     return <p className="p-6">Loading...</p>
 }
 
+// hvis det ikke finnes venue med denne id-en
 if (!venue) {
     return <p className="p-6">Venue not found.</p>;
 }
@@ -60,6 +65,7 @@ return (
                 Edit Venue
             </h1>
 
+            { /* Skjema for å redigere venue */ }
             <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Navn */}
                 <div>
