@@ -10,5 +10,4 @@ public class Athlete
         public string Image {get; set;} = "";
         public bool PurchaseStatus {get; set;} = false;
 
-    
 }
