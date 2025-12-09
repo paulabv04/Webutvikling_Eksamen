@@ -39,13 +39,14 @@ const AthletesPage = () => {
    );
 
    return(
-    <div className="min-h-screen bg-tennisSand py-10 px-4 flex justify-center">
-        <div className="w-full max-w-5xl bg-white rounded-2xl shadow-lg border border-tennisDark p-8">
-
+    
+<div className="min-h-screen bg-tennisSand py-10 px-4 flex justify-center">
+    <div className="w-full max-w-5xl bg-white rounded-2xl shadow-lg border border-tennisDark p-8">
+    
         {/* Header */}
         <div className="mb-6">
-        <h1 className="flex gap-4 px-2 pb-4 font-serif text-5xl text-tennisGreen">All Athletes</h1>
-        <p className="text-sm text-tennisDark">Overview of all registered tennis athletes for SportsWorld</p>
+            <h1 className="flex gap-4 px-2 pb-4 font-serif text-5xl text-tennisGreen">All Athletes</h1>
+            <p className="text-sm text-tennisDark">Overview of all registered tennis athletes for SportsWorld</p>
         </div>
 
 
@@ -53,16 +54,16 @@ const AthletesPage = () => {
         <div className="mb-4">
             <label className="block text-sm font-medium text-tennisDark mb-1"> Search by athlete name</label>
             <input
-            type="text"
-            value={search}
-            placeholder="e.g. Osaka, Rafa Nadal"
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full max-w-sm p-3 rounded-xl border border-tennisGreen/50 bg-white shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2 focus:ring-tennisGreen"
+                type="text"
+                value={search}
+                placeholder="e.g. Osaka, Rafa Nadal"
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full max-w-sm p-3 rounded-xl border border-tennisGreen/50 bg-white shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2 focus:ring-tennisGreen"
             />
         </div>
 
         {/*Athletes*/}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredAthletes.map(a => (
                 <AthleteCard
                     key={a.id}

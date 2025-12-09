@@ -156,7 +156,7 @@
             <p><code>GET /api/venues/{id}</code> - Get venue by id</p>
             <p><code>POST /api/venues</code> - Create venue</p>
             <p><code>PUT /api/venues/{id}</code> - Update venue</p>
-            <p><code>DELETE /api/venue/{id}</code> - Remove venue</p>
+            <p><code>DELETE /api/venues/{id}</code> - Remove venue</p>
         </div>
 
         <button class="btn" onclick="fetchVenues()">Show Venues</button>
@@ -174,8 +174,8 @@
         <div class="endpoint-list">
             <p><strong>Available Endpoints:</strong></p>
             <p><code>GET /api/finance</code> - Get current finances</p>
-            <p><code>POST /api/finance</code> - Add loan</p>
-            <p><code>POST /api/finance/{athleteId}</code> - Register purchase</p>
+            <p><code>POST /api/finance/loan</code> - Add loan</p>
+            <p><code>POST /api/finance/purchase/{athleteId}</code> - Register purchase</p>
         </div>
 
         <button class="btn" onclick="fetchFinance()">Show Finance</button>

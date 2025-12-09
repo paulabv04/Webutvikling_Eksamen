@@ -37,7 +37,6 @@ export default function Homepage(){
                 </div>
 
             </section>
-
             {/*Horisontal scroll for athletes*/}
             <section className="mt-16">
                 <h2 className="flex gap-4 px-2 pb-4 snap-x snap-mandatory font-serif text-3xl">
@@ -51,9 +50,9 @@ export default function Homepage(){
                         {athletes.map((athlete)=>(
                             <div
                                 key={athlete.id}
-                                className="min-w-[250px] snap-center flex-shrink-0"
+                                className="snap-center flex-shrink-0"
                             >
-                                <AthleteCard athlete={athlete}/>
+                                <AthleteCard athlete={athlete} compact/>
                             </div>
                         ))}
 
@@ -88,6 +87,6 @@ export default function Homepage(){
 
         </div>
 
-    )
+    );
 
 }

@@ -5,6 +5,7 @@ import venueService from "../services/VenueService";
 import type { IVenue } from "../interfaces/IVenue";
 import VenueCard from "../components/VenueCard";
 import ConfirmModal from "../components/ConfirmModal";
+import { useNavigate } from "react-router-dom";
 
 export default function VenueListPage() {
     //Loakl state for alle venues og filtrerte venues
@@ -16,6 +17,8 @@ export default function VenueListPage() {
     const [showConfirm, setShowConfirm] = useState(false);
     const [pendingDeleteId, setPendingDeleteId] = useState<number | null>(null);
 
+    //navigasjon, brukes for å navigere til edit siden 
+    const navigate = useNavigate();
 
     // Hent alle venues fra API
     const fetchVenues = async () => {
@@ -69,7 +72,7 @@ export default function VenueListPage() {
 
     return (
         <div className="min-h-screen bg-tennisSand py-10 px-4 flex justify-center">
-            <div className="w-full max-w-5xl bg-white rounded-2xl shadow-lg border border-tennisDark p-8">
+            <div className="w-full max-w-5xl bg-white rounded-2xl shadow-sm border border-tennisDark p-8">
 
                 {/* tittel */}
                 <div className="mb-6">
@@ -99,6 +102,7 @@ export default function VenueListPage() {
                                 key={v.id}
                                 venue={v}
                                 onDelete={() => startDelete(v.id)}
+                                onEdit={()=> navigate(`/venues/edit/${v.id}`)}
                                 />
                         ))}
                     </div>

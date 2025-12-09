@@ -7,34 +7,38 @@ import venueService from "../services/VenueService";
 import Button from "../components/Button";
 
 export default function AddVenuePage() {
-    const { addVenue } = useVenue(); // henter fra context
+    // henter addVenue fra VenueContext for å lagre ny venue globalt
+    const { addVenue } = useVenue(); 
 
-    // input felt state
+    // lokal state for inputfeltene i skjemaet
     const [name, setName] = useState("");
     const [capacity, setCapacity] = useState<number | "">("");
     const [image, setImage] = useState("");
     const [showSuccess, setShowSuccess] = useState(false);
 
 
-    // submit av skjema
+    // Håndter innsending av skjema
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        // validering når alle felt er fylt ut
         if(!name || capacity === "" || !image) {
             alert("Please fill out all fields.");
             return;
         }
 
         try {
+            // kaller addVenue fra context for å opprette en nye venue i backend
             await addVenue({
                 name, 
                 capacity: Number(capacity),
                 image,
             });
 
+            // vises suksessmodal når lagring er vellykket
             setShowSuccess(true);
 
-            // tøm inputfeltene etter post
+            // tøm inputfeltene etter at venue er lagt til
             setName("");
             setCapacity("");
             setImage("");
@@ -50,14 +54,15 @@ export default function AddVenuePage() {
             <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-lg border border-tennisGreen/50 p-8">
 
                 {/*Tittel*/}
-                <h1 className="text-4xl font-serif text-tennisGreen mb-1"> Add new venue </h1>
+                <h1 className="text-4xl font-serif text-tennisGreen mb-1"> Register new Venue </h1>
                 <p className="text-sm text-tennisDark mb-6">
                     Register a new premium tennis venue for SportsWorld events.
                 </p>
 
-                {/* Skjema for å legge til venue */}
+                {/* Skjema for å registrere ny venue */}
                 <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
+                    { /* Navn felt */ }
                     <label className="block text-sm font-medium text-tennisDark"> Venue name </label>
                     <input 
                     type="text"
@@ -69,6 +74,7 @@ export default function AddVenuePage() {
                     />
                 </div>
 
+                { /* Kapasitet felt */ }
                 <div>
                     <label className="block text-sm font-medium text-tennisDark mb-1"> Capacity </label>
                     <input
@@ -84,6 +90,7 @@ export default function AddVenuePage() {
                     />
                 </div>
 
+                { /* Bildeopplasting, sender fil til backend og lagrer filnavn */ }
                 <div>
                     <label className="block text-sm font-medium text-tennisDark mb-1"> Image </label>
                     <input
@@ -93,6 +100,7 @@ export default function AddVenuePage() {
                         if (!e.target.files || e.target.files.length === 0) return;
                         const file = e.target.files[0];
 
+                        // laster opp bilde via VenueService og lagrer filnavnet
                         const uploaded = await venueService.uploadImage(file);
                         setImage(uploaded);
                     }}
@@ -101,11 +109,13 @@ export default function AddVenuePage() {
                     />
                 </div>
 
+                { /* Knapp for å sende inn skjema */ }
                 <Button variant="primary" type="submit">
                         Register venue
                     </Button>
                 </form>
 
+                { /* Modal som vises når venue er lagt til */ }
                 <SuccessModal
                 show={showSuccess}
                 message="Venue added successfully!"

@@ -1,10 +1,12 @@
 
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 export default function Navbar() {
-    //For å finne ut hvilken side brukeren er på
+    //For å finne ut hvilken side brukeren er på og justerer meny etter størrelse på skjerm
     const { pathname } = useLocation();
+    const [menyOpen, setMenyOpen] = useState(false);
 
     //Sjekker om man er inne på athletes- eller venues-sider
     const isAthletes = pathname.startsWith("/athletes");
@@ -25,7 +27,7 @@ export default function Navbar() {
             </NavLink>
 
             { /* Links */ }
-            <div className="flex items-center gap-6 text-sm">
+            <div className="hidden md:flex items-center gap-6 text-sm">
 
             {/* Home */ }
             <NavLink
@@ -64,7 +66,7 @@ export default function Navbar() {
                     Athletes
                 </NavLink>
 
-                 <div className="absolute left-0 mt-2 w-44 bg-tennisSand rounded-xl shadow-lg border border-tennisGreen/20 py-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-1">
+                <div className="absolute left-0 mt-2 w-44 bg-white rounded-xl shadow-lg border border-tennisGreen/20 py-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-1">
 
                     <NavLink
                         to="/athletes"
@@ -93,7 +95,7 @@ export default function Navbar() {
                     Venues
                 </NavLink>
 
-                <div className="absolute left-0 mt-2 w-44 bg-tennisSand rounded-xl shadow-lg border border-tennisGreen/20 py-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-1">
+                <div className="absolute left-0 mt-2 w-44 bg-white rounded-xl shadow-lg border border-tennisGreen/20 py-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-1">
 
                 <NavLink
                     to="/venues"
@@ -111,7 +113,80 @@ export default function Navbar() {
                 </div>
             </div>
         </div>
+
+        {/* Burger meny for mobil */}
+        <button
+        className="md:hidden text-tennisGreen text-3xl"
+        onClick={()=> setMenyOpen(!menyOpen)}>
+            ☰
+        </button>
+        
     </nav>
+    {menyOpen && (
+        <div className="md:hidden bg-white border-t border-tennisGreen/20 px-4 py-4 space-y-3">
+
+            <NavLink
+                to="/"
+                className="block px-3 py-2 rounded-lg text-tennisDark hover:bg-tennisPink/30"
+                onClick={()=> setMenyOpen(false)}
+            >
+                Home
+            </NavLink>
+            <NavLink
+                to="/finance"
+                className="block px-3 py-2 rounded-lg text-tennisDark hover:bg-tennisPink/30"
+                onClick={()=> setMenyOpen(false)}
+            >
+                Finance
+            </NavLink>
+            
+            <details className="cursor-pointer">
+                <summary className="px-3 py-2 rounded-lg text-tennisDark hover:bg-tennisPink/30">
+                    Athletes
+                </summary>
+                <div className="pl-4 space-y-2 mt-2">
+                    <NavLink
+                        to="/athletes"
+                        className="block text-sm py-1 hover:text-tennisGreen"
+                        onClick={()=> setMenyOpen(false)}
+                    >
+                        See all athletes
+                    </NavLink>
+                    <NavLink
+                        to="/athletes/register"
+                        className="block text-sm py-1 hover:text-tennisGreen"
+                        onClick={()=> setMenyOpen(false)}
+                    >
+                        Register athlete
+                    </NavLink>
+
+                </div>
+            </details>
+
+            <details className="cursor-pointer">
+                <summary className="px-3 py-2 rounded-lg text-tennisDark hover:bg-tennisPink/30">
+                    Venues
+                </summary>
+                <div className="pl-4 space-y-2 mt-2">
+                    <NavLink
+                        to="/venues"
+                        className="block text-sm py-1 hover:text-tennisGreen"
+                        onClick={()=> setMenyOpen(false)}
+                    >
+                        See all venues
+                    </NavLink>
+                    <NavLink
+                        to="/venues/admin"
+                        className="block text-sm py-1 hover:text-tennisGreen"
+                        onClick={()=> setMenyOpen(false)}
+                    >
+                        Register venue 
+                    </NavLink>
+                </div>
+            </details>
+
+        </div>
+    )}
 </header>
 );
 }

@@ -42,7 +42,7 @@ const RegisterAthletePage = () => {
             {/*Navn*/}
             <div>
                 <label className="block text-sm font-medium text-tennisDark">Name</label>
-                     <input
+                    <input
                         type="text"
                         value={athlete.name}
                         placeholder="e.g. Kasper Rud"
