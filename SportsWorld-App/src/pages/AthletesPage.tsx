@@ -74,7 +74,7 @@ const AthletesPage = () => {
 
         <ConfirmModal 
         show={showConfirm}
-        message="Are you sure you ant to delete this athlete?"
+        message="Are you sure you want to delete this athlete?"
         onConfirm={confirmDelete}
         onCancel={() => setShowConfirm(false)}
         />
