@@ -111,7 +111,7 @@ export default function VenueListPage() {
                 {/*Confirm Modal*/}
                 <ConfirmModal 
                 show={showConfirm}
-                message="Are you sure you ant to delete this venue?"
+                message="Are you sure you want to delete this venue?"
                 onConfirm={confirmDelete}
                 onCancel={() => setShowConfirm(false)}
                 />

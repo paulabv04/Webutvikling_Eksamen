@@ -74,10 +74,10 @@ const AthletesPage = () => {
         </div>
 
         <ConfirmModal 
-            show={showConfirm}
-            message="Are you sure you ant to delete this athlete?"
-            onConfirm={confirmDelete}
-            onCancel={() => setShowConfirm(false)}
+        show={showConfirm}
+        message="Are you sure you want to delete this athlete?"
+        onConfirm={confirmDelete}
+        onCancel={() => setShowConfirm(false)}
         />
         </div>
     </div>
