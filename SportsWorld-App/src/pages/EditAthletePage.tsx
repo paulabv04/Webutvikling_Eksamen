@@ -4,14 +4,20 @@ import type { IAthlete } from "../interfaces/IAthlete";
 import { getAthleteById, updateAthlete } from "../services/AthleteService";
 import { uploadImage } from "../services/ImageService";
 import Button from "../components/Button";
+import SuccessModal from "../components/SuccessModal";
+import { useAthlete } from "../contexts/AthleteContext";
 
 const EditAthletePage = () => {
     //Henter id fra URL
     const {id} = useParams();
     const navigate = useNavigate();
 
+    const {loadAthletes} = useAthlete();
+
     //Holder på athleten som skal redigeres
     const [athlete, setAthlete] = useState<IAthlete | null>(null);
+
+    const [showSuccess, setShowSuccess] = useState(false);
 
     //Laster inn data når siden åpnes
         useEffect(() => {
@@ -33,8 +39,10 @@ const EditAthletePage = () => {
 
             await updateAthlete(athlete.id, athlete);
 
-            //Send brukeren tilbake til oversikten
-            navigate("/athletes"); 
+            await loadAthletes();
+
+            setShowSuccess(true);
+
         };
 
         //Viser loading før data er hentet
@@ -93,21 +101,12 @@ const EditAthletePage = () => {
                         />
                     </div>
 
-                    {/*Endre purchased-status*/}
+                    {/*Purchased-status*/}
                     <div>
-                        <label className="block text-tennisGreen font-medium mb-1">Purchased?</label>
-                        <select
-                        value={athlete.purchaseStatus ? "true" : "false"}
-                        onChange={(e) =>
-                            setAthlete({...athlete, purchaseStatus: e.target.value === "true"
-
-                            })
-                        } 
-                        className="w-full rounded-xl border border-tennisGreen/40 p-3 shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2 focus:ring-tennisGreen"
-                        >
-                        <option value="false">Not purchased</option>
-                            <option value="true">Purchased</option>
-                        </select>
+                        <label className="block text-tennisGreen font-medium mb-1"> Purchased?</label>
+                        <p className="p-3 rounded-xl border border-tennisGreen/40 bg-gray-50">
+                        {athlete.purchaseStatus ? "Purchased" : "Not purchased"}
+                        </p>
                     </div>
 
                     {/*Laste opp nytt bilde og oppdatere image-feltet*/}
@@ -134,6 +133,15 @@ const EditAthletePage = () => {
                     </Button>
                 </form>
             </div>
+
+            <SuccessModal 
+            show={showSuccess}
+            message="Athlete updated successfully!"
+            onClose={() => {
+                setShowSuccess(false);
+                navigate("/athletes");
+            }}
+            />
         </div>
         );
 };
