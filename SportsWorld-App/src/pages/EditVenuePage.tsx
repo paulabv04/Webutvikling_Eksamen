@@ -14,6 +14,7 @@ export default function EditVenuePage() {
     const [venue, setVenue] = useState<IVenue | null>(null);
     const [loading, setLoading] = useState(true);
 
+
 // når komponenten lastes inn, henter vi venue fra API basert på id 
 useEffect(() => {
     const loadVenue = async () => {
@@ -102,19 +103,26 @@ return (
                     />
                 </div>
 
-                { /* Image path / URL */ }
+                { /* Bruker kan legge til bilde fra filer */ }
                 <div>
                     <label className="block text-sm font-medium text-tennisGreen mb-1">
-                        Image path / URL
+                        Image
                     </label>
                     <input 
-                    type="text"
-                    value={venue.image}
-                    onChange={(e) =>
-                        setVenue({ ...venue, image: e.target.value })
+                    type="file"
+                    accept="image/*"
+                    onChange={async(e) =>{
+                        if (!e.target.files || e.target.files.length === 0) return;
+
+                        const file = e.target.files[0];
+
+                        const uploadedFileName = await venueService.uploadImage(file);
+
+                        setVenue({...venue, image: uploadedFileName});
+                    }
                     }
                     className="w-full rounded-xl border border-tennisGreen/40 p-3 shadow-sm focus:outline-none focus:ring-tennisGreen focus:ring-2"
-                    required
+                    
                     />
                 </div>
 
